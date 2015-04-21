@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
     def index
-	redirect_to  :action => main 
+	redirect_to  :action => 'main'
     end
 
     def main

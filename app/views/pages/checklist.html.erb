@@ -1,0 +1,55 @@
+
+<%= render 'shared/header' %>
+
+	<div class="container">
+	<div class="login">
+		<h1> Checklist </h1> <br><br>
+ 
+<form class="form-horizontal">
+	  <div class="form-group">
+	    <label class="col-md-6 control-label">Are you a gay?</label>
+		    <div class="col-md-6">
+    		  <div id="line1" class="btn-group" data-toggle="buttons">
+        		<label class="btn btn-default"><input type="radio" name="one" value="1">Yes</label>
+        		<label class="btn btn-default"><input type="radio" name="one" value="2">I don't know</label>
+        		<label class="btn btn-default"><input type="radio" name="one" value="3">No</label>
+      		  </div>
+    		</div>
+     </div>
+     <div class="form-group">
+        <label class="col-md-6 control-label">will you do wiring or soldering on Wednesday?</label>
+          <div class="col-md-6">
+             <div id="line1" class="btn-group" data-toggle="buttons">
+        		    <label class="btn btn-default"><input type="radio" name="two" value="1">Yes</label>
+        		    <label class="btn btn-default"><input type="radio" name="two" value="2">I don't know</label>
+        		    <label class="btn btn-default"><input type="radio" name="two" value="3">No</label>
+      		     </div>
+    		 </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-6 control-label">will you drop swpp?</label>
+          <div class="col-md-6">
+    		   <div id="line1" class="btn-group" data-toggle="buttons">
+        		  <label class="btn btn-default"><input type="radio" name="three" value="1">Yes</label>
+        		  <label class="btn btn-default"><input type="radio" name="three" value="2">I don't know</label>
+        		  <label class="btn btn-default"><input type="radio" name="three" value="3">No</label>
+      		   </div>
+         </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-6 control-label">will LA Clippers get the NBA championship?</label>
+          <div class="col-md-6">
+    		   <div id="line1" class="btn-group" data-toggle="buttons">
+        		  <label class="btn btn-default"><input type="radio" name="four" value="1">Yes</label>
+        		  <label class="btn btn-default"><input type="radio" name="four" value="2">I don't know</label>
+        		  <label class="btn btn-default"><input type="radio" name="four" value="3">No</label>
+      		   </div>
+         </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Magic Happens!</button>
+
+</form>
+  </div>
+</div>
+
+<%= render 'shared/footer' %>
