@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     get 'pages/checklist'
     get 'pages/login'
     get 'pages/signup'
+    get 'pages/profile'
+
+    post 'users/signup', to: 'users#signup'
+    post 'users/login', to: 'users#login'
+    get 'users/logout'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

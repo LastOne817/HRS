@@ -2,33 +2,34 @@ class UsersController < ApplicationController
    include UsersHelper
 
    def login
-
 	@user = User.find_by(email: params[:email])
 	
-	if @user && @user.authenticate(params[:password])
-	    #TODO login success   
+	#if @user && @user.password == params[:password]
+	if @user != nil   
 	    cookies[:user_id] = @user.id
 	    redirect_to root_path
 	else
-	    #TODO error
-	    flash[:alert] = "Incorrect email or password"	    
+	    flash[:alert] = "Incorrect email or password"
+	    redirect_to :back
 	end
    end
 
    def signup
-	# TODO Uniqueness
-	@user = User.new
-	@user.email = params[:username]
+	@user = User.new(:email => params[:email])
 	@user.nickname = params[:nickname]
 	if params[:password] == params[:password_confirmation]
-	    @user.password = params[:password]
+	   # @user.password = params[:password]
 	    if @user.save
-		#TODO redirect to login and print message
+		cookies[:user_id] = @user.id
+            	redirect_to root_path
 	    else
-		#TODO check error number and render json
+		flash[:alert] ="Username is invalid"
+		redirect_to :back
 	    end
 	end
-	
+   end
+
+   def signup_facebook
    end
 
    def logout
