@@ -1,0 +1,150 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <link href="HRS.css" rel="stylesheet">  
+</head>
+
+
+<body>
+
+<div class="container">
+	<div class="panel panel-primary">
+  		<div class="panel-heading"><h1 class="h1-center">User Profile</h1></div>
+  			<div class="panel-body profile-panel-body">
+              <div class="row">
+                <div class="col-md-3" align="center"> 
+                	<img alt="User Pic" src="http://cfile29.uf.tistory.com/image/180FC1494D33021C2D0386" class="img-circle img-profile"> <br>
+                		<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-Change-Photo"><h4>Change Photo</h4></a>
+                	 </div>
+                
+                <div class="col-md-9"> 
+                  <table class="table">
+                    <tbody>
+					  <tr>
+                        <td><h3>Email</h3></td>
+                        <td><h3>ethan0311@gmail.com</h3></td>
+                      </tr>
+                      
+                      <tr>
+                        <td><h3>Nickname:</h3></td>
+                        <td><h3>Sangeun</h3></td>
+                      </tr>
+                      
+                      <tr>
+                        <td><h3>Registered date:</h3></td>
+                        <td><h3>04/16/2015</h3></td>
+                      </tr>
+                      
+                      <tr>
+                        <td><h3>Date of Birth</h3></td>
+                        <td><h3>03/11/1995</h3></td>
+                      </tr>
+                      
+                      <tr>
+                        <td><h3>Gender</h3></td>
+                        <td><h3>Gay</h3></td>
+                      </tr>
+                     
+                    </tbody>
+
+                  </table>
+                  
+                  <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-Change-Password"><h4>Change Password</h4></a>
+                  <a href="#" class="btn btn-warning pull-right" data-toggle="modal" data-target="#Modal-Delete-User"><h4>Delete User</h4></a>
+              </div>
+  			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="Modal-Change-Password" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Change Password</h3>
+        </div>
+        <div class="modal-body form-horizontal">
+          <div class="control-group">
+            <label for="current_password" class="control-label"><h4>Current Password</h4></label>
+            <div class="controls">
+                <input type="password" name="current_password">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="new_password" class="control-label"><h4>New Password</h4></label>
+            <div class="controls">
+                <input type="password" name="new_password">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="confirm_password" class="control-label"><h4>Confirm Password</h4></label>
+            <div class="controls">
+                <input type="password" name="confirm_password">
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning">Save Changes</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+<div class="modal fade" id="Modal-Delete-User" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Delete User</h3>
+        </div>
+        
+        <div class="modal-body form-horizontal">
+        	<h3>Are you REALLY sure? </h3><br>
+	        <div class="control-group">
+    	        <label for="confirm_password" class="control-label"><h4>Confirm Password</h4></label>
+        	    	<div class="controls">
+            	    	<input type="password" name="confirm_password">
+          	  		</div>
+        	</div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning">Yes, delete my account</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+<div class="modal fade" id="Modal-Change-Photo" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Change Photo</h3>
+        </div>
+        
+        <div class="modal-body form-horizontal">
+        	<input type="file" class="file">
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning">Change</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+</body>
