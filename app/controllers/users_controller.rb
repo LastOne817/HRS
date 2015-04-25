@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 	if params[:password] == params[:password_confirmation]
 	   # @user.password = params[:password]
 	    if @user.save
-		session[:user_id] = @user.id
+		session[:user_email] = @user.email
             	redirect_to root_path
 	    else
 		flash[:alert] ="Username is invalid"
