@@ -59,9 +59,10 @@ class UsersController < ApplicationController
 
    def deleteUser
 	@user = User.find_by(email: params[:email])
+	#if @user.password == params[:confirm_password]
 	@user.destroy
 	flash[:alert] = "your account is deleted successfully"
-	session.delete(:user_id)
+	session.delete(:user_email)
 	redirect_to root_path
    end
 end

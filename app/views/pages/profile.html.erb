@@ -16,27 +16,17 @@
                     <tbody>
 					  <tr>
                         <td><h3>Email</h3></td>
-                        <td><h3>ethan0311@gmail.com</h3></td>
+                        <td><h3><%= @user.email %></h3></td>
                       </tr>
                       
                       <tr>
                         <td><h3>Nickname:</h3></td>
-                        <td><h3>Sangeun</h3></td>
+                        <td><h3><%= @user.nickname  %></h3></td>
                       </tr>
                       
                       <tr>
                         <td><h3>Registered date:</h3></td>
-                        <td><h3>04/16/2015</h3></td>
-                      </tr>
-                      
-                      <tr>
-                        <td><h3>Date of Birth</h3></td>
-                        <td><h3>03/11/1995</h3></td>
-                      </tr>
-                      
-                      <tr>
-                        <td><h3>Gender</h3></td>
-                        <td><h3>Gay</h3></td>
+                        <td><h3><%= @user.created_at %></h3></td>
                       </tr>
                      
                     </tbody>
@@ -90,6 +80,7 @@
 
 
 <div class="modal" id="Modal-Delete-User" role="dialog">
+<form action="/users/deleteUser" method="post"> 
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -108,12 +99,13 @@
         </div>
         
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning">Yes, delete my account</button>
+          <button type="submit" class="btn btn-warning" name="email" value="<%= @user.email%>">Yes, delete my account</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
         </div>
       </div>
       
     </div>
+</form>
   </div>
 
 
