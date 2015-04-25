@@ -3,29 +3,43 @@ class UsersController < ApplicationController
 
    def login
 	@user = User.find_by(email: params[:email])
-	
-	#if @user && @user.password == params[:password]
-	if @user != nil   
+	if @user == nil
+	    flash[:alert] = "email doesn't exist"
+	    redirect_to :back	
+	elsif @user.password == params[:password]   
 	    session[:user_id] = @user.uid
+	    flash[:alert] = " Logged in Successfully"
 	    redirect_to root_path
 	else
-	    flash[:alert] = "Incorrect email or password"
+	    flash[:alert] = "Incorrect email and password combination"
 	    redirect_to :back
 	end
    end
 
    def signup
+	@errorparam = 0
+	if User.find_by(:email => params[:email]) != nil
+	    flash[:alert] = "email already exist"
+	    @errorparam = 1
+	end
+
 	@user = User.new(:email => params[:email])
-	@user.nickname = params[:nickname]
-	if params[:password] == params[:password_confirmation]
-	   # @user.password = params[:password]
+	@user.username = params[:username]
+	if params[:password] == params[:password_confirmation] && @errorparam == 0
+	    @user.password = params[:password]
 	    if @user.save
+		@user.uid = @user.id
+		@user.image = "http://cdn.ddanzi.com/201310-images/1531864.jpg"
+		@user.save
+		flash[:alert] = "Signed in successfully"
 		session[:user_id] = @user.uid
             	redirect_to root_path
 	    else
 		flash[:alert] ="Username is invalid"
 		redirect_to :back
 	    end
+	elsif @errorparam == 1
+	    redirect_to :back
 	else
 	    flash[:alert]="Password Confirm is incorrect"
 	    redirect_to :back
@@ -59,12 +73,9 @@ class UsersController < ApplicationController
 
    def deleteUser
 	@user = User.find_by(uid: params[:uid])
-    #if @user.password == params[:confirm_password]
-    flash[:alert] = "your account is deleted successfully"
-    puts session[:user_id]
-    session[:user_id] = nil
-    @user.destroy
-    puts session[:user_id]
-    redirect_to root_path
+    	flash[:alert] = "your account is deleted successfully"
+    	session[:user_id] = nil
+    	@user.destroy
+    	redirect_to root_path
    end
 end
