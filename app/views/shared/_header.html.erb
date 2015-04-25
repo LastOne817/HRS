@@ -38,8 +38,8 @@
 
 
 <% if flash[:alert] != nil %>
-<div class="alert alert-warning alert-dismissible" role="alert" data-dismiss="alert">
-        <h4><%= flash[:alert] %></h4>
+<div class="alert alert-warning alert-dismissible" id="AlertBox" role="alert" data-dismiss="alert">
+        <h4 id="AlertMessage"><%= flash[:alert] %></h4>
 </div>
 <% end %>
 
@@ -47,5 +47,13 @@
 
 #LoginMessage{
 	margin-top: 12px;
+}
+
+#AlertMessage{
+	margin-bottom: 0px;
+}
+
+#AlertBox{
+	text-align: center;
 }
 </style>
