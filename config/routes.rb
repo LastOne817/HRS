@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-    get'/auth/:provider/callback' => 'sessions#create'
-    get '/login', to: 'sessions#new', :as => :login
+    get'/auth/:provider/callback' => 'sessions#auth'
+    get '/login', to: 'sessions#find', :as => :login
+    get '/signin', to: 'sessions#new', :as => :signin
     get '/logout', to: 'sessions#destroy', :as => :logout
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
