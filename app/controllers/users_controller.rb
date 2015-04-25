@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 	
 	#if @user && @user.password == params[:password]
 	if @user != nil   
-	    session[:user_id] = @user.id
+	    session[:user_id] = @user.uid
 	    redirect_to root_path
 	else
 	    flash[:alert] = "Incorrect email or password"
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 	if params[:password] == params[:password_confirmation]
 	   # @user.password = params[:password]
 	    if @user.save
-		session[:user_id] = @user.id
+		session[:user_id] = @user.uid
             	redirect_to root_path
 	    else
 		flash[:alert] ="Username is invalid"
@@ -58,11 +58,13 @@ class UsersController < ApplicationController
    end
 
    def deleteUser
-	@user = User.find_by(email: params[:email])
-	#if @user.password == params[:confirm_password]
-	@user.destroy
-	flash[:alert] = "your account is deleted successfully"
-	session[:user_id] = nil
-	redirect_to root_path
+	@user = User.find_by(uid: params[:uid])
+    #if @user.password == params[:confirm_password]
+    flash[:alert] = "your account is deleted successfully"
+    puts session[:user_id]
+    session[:user_id] = nil
+    @user.destroy
+    puts session[:user_id]
+    redirect_to root_path
    end
 end

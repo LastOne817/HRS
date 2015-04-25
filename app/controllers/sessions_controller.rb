@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
                 redirect_to :back
             else
                 user = User.omniauth(env['omniauth.auth'])
-                session[:user_id] = user.id
+                session[:user_id] = user.uid
                 redirect_to root_url
             end
         elsif(env['omniauth.params']['type'] == 'login')

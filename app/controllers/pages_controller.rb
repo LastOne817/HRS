@@ -2,10 +2,9 @@ class PagesController < ApplicationController
 
     before_filter :makeAlert
 
-
     def index
-	flash[:alert] = flash.now[:alert]
-	redirect_to  :action => 'main'
+        flash[:alert] = flash.now[:alert]
+        redirect_to  :action => 'main'
     end
 
     def main
@@ -21,7 +20,7 @@ class PagesController < ApplicationController
     end
 
     def profile
-	@user = User.find_by(email: session[:user_email])
+	    @user = User.find_by(uid: session[:user_id])
     end
 
 private
