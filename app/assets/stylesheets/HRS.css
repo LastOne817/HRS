@@ -182,7 +182,7 @@ li.right{
 	width: 1170px;
 	height: 700px;
 	margin: auto;
-	padding: 100px;
+	border: 0;
 }
 
 .login {
