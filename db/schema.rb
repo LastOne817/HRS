@@ -38,9 +38,8 @@ ActiveRecord::Schema.define(version: 20150422171452) do
     t.string   "provider"
     t.string   "uid"
     t.string   "username"
-    t.string   "nickname"
     t.string   "email"
-    t.string   "image"
+    t.binary   "image"
     t.string   "token"
     t.datetime "expires_at"
     t.datetime "created_at", null: false

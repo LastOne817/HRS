@@ -4,9 +4,9 @@ class CreateUsers < ActiveRecord::Migration
             t.string :provider
             t.string :uid
             t.string :username
-            t.string :nickname
+            t.string :password
             t.string :email
-            t.string :image
+            t.binary:image
             t.string :token
             t.datetime :expires_at
 
