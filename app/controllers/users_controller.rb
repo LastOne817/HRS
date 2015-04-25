@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 	
 	#if @user && @user.password == params[:password]
 	if @user != nil   
-	    cookies[:user_id] = @user.id
+	    session[:user_email] = @user.email
 	    redirect_to root_path
 	else
 	    flash[:alert] = "Incorrect email or password"
@@ -20,12 +20,15 @@ class UsersController < ApplicationController
 	if params[:password] == params[:password_confirmation]
 	   # @user.password = params[:password]
 	    if @user.save
-		cookies[:user_id] = @user.id
+		session[:user_email] = @user.email
             	redirect_to root_path
 	    else
 		flash[:alert] ="Username is invalid"
 		redirect_to :back
 	    end
+	else
+	    flash[:alert]="Password Confirm is incorrect"
+	    redirect_to :back
 	end
    end
 
@@ -34,7 +37,7 @@ class UsersController < ApplicationController
 
    def logout
 	flash[:alert] = "logged out successfully"
-	cookies.delete(:user_id)
+	session.delete(:user_email)
 	redirect_to root_path
    end
 
@@ -56,9 +59,10 @@ class UsersController < ApplicationController
 
    def deleteUser
 	@user = User.find_by(email: params[:email])
+	#if @user.password == params[:confirm_password]
 	@user.destroy
 	flash[:alert] = "your account is deleted successfully"
-	cookies.delete(:user_id)
+	session.delete(:user_email)
 	redirect_to root_path
    end
 end

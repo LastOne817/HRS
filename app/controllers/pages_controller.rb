@@ -1,6 +1,10 @@
 class PagesController < ApplicationController
 
+    before_filter :makeAlert
+
+
     def index
+	flash[:alert] = flash.now[:alert]
 	redirect_to  :action => 'main'
     end
 
@@ -17,6 +21,11 @@ class PagesController < ApplicationController
     end
 
     def profile
+	@user = User.find_by(email: session[:user_email])
     end
 
+private
+    def makeAlert
+	flash.now[:alert] = flash[:alert]
+    end
 end
