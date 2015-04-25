@@ -7,7 +7,7 @@
   			<div class="panel-body profile-panel-body">
               <div class="row">
                 <div class="col-md-3" align="center"> 
-                	<img alt="User Pic" src="http://cfile29.uf.tistory.com/image/180FC1494D33021C2D0386" class="img-circle img-profile"> <br>
+                    <img alt="User Pic" src=<%= @user.image %> class="img-circle img-profile"> <br>
                 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-Change-Photo"><h4>Change Photo</h4></button>
                 	 </div>
                 
@@ -21,7 +21,7 @@
                       
                       <tr>
                         <td><h3>Nickname:</h3></td>
-                        <td><h3><%= @user.nickname  %></h3></td>
+                        <td><h3><%= @user.username  %></h3></td>
                       </tr>
                       
                       <tr>
@@ -90,12 +90,6 @@
         
         <div class="modal-body form-horizontal">
         	<h3>Are you REALLY sure? </h3><br>
-	        <div class="control-group">
-    	        <label for="confirm_password" class="control-label"><h4>Confirm Password</h4></label>
-        	    	<div class="controls">
-            	    	<input type="password" name="confirm_password">
-          	  		</div>
-        	</div>
         </div>
         
         <div class="modal-footer">
