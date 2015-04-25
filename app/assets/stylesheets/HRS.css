@@ -178,6 +178,11 @@ li.right{
   margin: auto;
 }
 
+#wiki {
+	margin: auto;
+	padding: 100px;
+}
+
 .login {
   margin: auto;
   padding: 100px;

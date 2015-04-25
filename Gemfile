@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # bundle needed for facebook login
 gem 'omniauth-facebook'
 
+gem 'omniauth', '~> 1.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
