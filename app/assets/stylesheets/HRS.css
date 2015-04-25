@@ -179,6 +179,8 @@ li.right{
 }
 
 #wiki {
+	width: 1170px;
+	height: 700px;
 	margin: auto;
 	padding: 100px;
 }
