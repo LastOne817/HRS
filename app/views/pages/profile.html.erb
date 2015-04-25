@@ -43,7 +43,7 @@
 
                   </table>
                   
-                  <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-Change-Password"><h4>Change Password</h4></a>
+                  <button onclick="$('#Modal-Change-Password').show()" class="btn-primary" data-toggle="modal" data-target="#Modal-Change-Password"><h4>Change Password</h4></button>
                   <a href="#" class="btn btn-warning pull-right" data-toggle="modal" data-target="#Modal-Delete-User"><h4>Delete User</h4></a>
               </div>
   			</div>
@@ -140,3 +140,7 @@
 
 
 <%= render 'shared/footer' %>
+
+<script>
+    $('changepasswordbutton').onclick
+

@@ -33,3 +33,12 @@
 </div>
 
 <% end %>
+
+
+<% if flash[:alert] != nil %>
+<div class="alert alert-warning alert-dismissible" role="alert">
+        <h4><%= flash[:alert] %></h4>
+</div>
+<% end %>
+
+

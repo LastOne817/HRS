@@ -26,6 +26,9 @@ class UsersController < ApplicationController
 		flash[:alert] ="Username is invalid"
 		redirect_to :back
 	    end
+	else
+	    flash[:alert]="Password Confirm is incorrect"
+	    redirect_to :back
 	end
    end
 
