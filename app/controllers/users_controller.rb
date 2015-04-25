@@ -26,6 +26,9 @@ class UsersController < ApplicationController
 		flash[:alert] ="Username is invalid"
 		redirect_to :back
 	    end
+	else
+	    flash[:alert]="Password Confirm is incorrect"
+	    redirect_to :back
 	end
    end
 
@@ -56,6 +59,7 @@ class UsersController < ApplicationController
 
    def deleteUser
 	@user = User.find_by(email: params[:email])
+	#if @user.password == params[:confirm_password]
 	@user.destroy
 	flash[:alert] = "your account is deleted successfully"
 	session[:user_id] = nil

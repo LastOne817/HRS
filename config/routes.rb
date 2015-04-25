@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
     post 'users/signup', to: 'users#signup'
     post 'users/login', to: 'users#login'
+    post 'users/deleteUser', to: 'users#deleteUser'
     get 'users/logout'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

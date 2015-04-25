@@ -1,4 +1,3 @@
-
 <% if session[:user_id].nil? %>
 <div class="browse">
 
@@ -26,10 +25,34 @@
     <ul>
       <li><h3>Wiki</h3></li>
       <li><h3><%= link_to "Recommendation", controller: "pages", action: "checklist" %></h3></li>
-      <li class="right"><h3><%= link_to "Edit Profile", controller: "pages", action: "profile" %></h3></li>
+
       <li class="right"><h3><%= link_to "Log out", controller: "users", action: "logout"  %></h3></li>
+      <li class="right"><h3><%= link_to "Edit Profile", controller: "pages", action: "profile" %></h3></li>
+      <li class="right" id="LoginMessage"><h4> Hello! <%= session[:user_email] %> </h4></li>
     </ul>
   </div>
 </div>
 
 <% end %>
+
+
+<% if flash[:alert] != nil %>
+<div class="alert alert-warning alert-dismissible" id="AlertBox" role="alert" data-dismiss="alert">
+        <h4 id="AlertMessage"><%= flash[:alert] %></h4>
+</div>
+<% end %>
+
+<style>
+
+#LoginMessage{
+	margin-top: 12px;
+}
+
+#AlertMessage{
+	margin-bottom: 0px;
+}
+
+#AlertBox{
+	text-align: center;
+}
+</style>
