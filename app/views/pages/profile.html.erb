@@ -1,14 +1,14 @@
 
 <%= render 'shared/header' %>
 
-<div class="container">
+<div class="container" style="margin-top: 50px">
 	<div class="panel panel-primary">
   		<div class="panel-heading"><h1 class="h1-center">User Profile</h1></div>
   			<div class="panel-body profile-panel-body">
               <div class="row">
                 <div class="col-md-3" align="center"> 
                 	<img alt="User Pic" src="http://cfile29.uf.tistory.com/image/180FC1494D33021C2D0386" class="img-circle img-profile"> <br>
-                		<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-Change-Photo"><h4>Change Photo</h4></a>
+                		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-Change-Photo"><h4>Change Photo</h4></button>
                 	 </div>
                 
                 <div class="col-md-9"> 
@@ -43,15 +43,15 @@
 
                   </table>
                   
-                  <button onclick="$('#Modal-Change-Password').show()" class="btn-primary" data-toggle="modal" data-target="#Modal-Change-Password"><h4>Change Password</h4></button>
-                  <a href="#" class="btn btn-warning pull-right" data-toggle="modal" data-target="#Modal-Delete-User"><h4>Delete User</h4></a>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-Change-Password"><h4>Change Password</h4></button>
+                  <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#Modal-Delete-User"><h4>Delete User</h4></button>
               </div>
   			</div>
 		</div>
 	</div>
 </div>
 
-<div class="modal fade" id="Modal-Change-Password" role="dialog">
+<div class="modal custom-modal-fade" id="Modal-Change-Password" role="dialog" aria-hitten="true">
     <div class="modal-dialog modal-lg">
     
       <div class="modal-content">
@@ -89,7 +89,7 @@
   </div>
 
 
-<div class="modal fade" id="Modal-Delete-User" role="dialog">
+<div class="modal" id="Modal-Delete-User" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -117,7 +117,7 @@
   </div>
 
 
-<div class="modal fade" id="Modal-Change-Photo" role="dialog">
+<div class="modal" id="Modal-Change-Photo" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -140,7 +140,4 @@
 
 
 <%= render 'shared/footer' %>
-
-<script>
-    $('changepasswordbutton').onclick
 

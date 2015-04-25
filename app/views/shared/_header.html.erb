@@ -1,5 +1,5 @@
 
-<% if cookies[:user_id].nil? %>
+<% if session[:user_email].nil? %>
 <div class="browse">
 
   <div class="container">
@@ -26,8 +26,10 @@
     <ul>
       <li><h3>Wiki</h3></li>
       <li><h3><%= link_to "Recommendation", controller: "pages", action: "checklist" %></h3></li>
-      <li class="right"><h3><%= link_to "Edit Profile", controller: "pages", action: "profile" %></h3></li>
+
       <li class="right"><h3><%= link_to "Log out", controller: "users", action: "logout"  %></h3></li>
+      <li class="right"><h3><%= link_to "Edit Profile", controller: "pages", action: "profile" %></h3></li>
+      <li class="right" id="LoginMessage"><h4> Hello! <%= session[:user_email] %> </h4></li>
     </ul>
   </div>
 </div>
@@ -36,9 +38,14 @@
 
 
 <% if flash[:alert] != nil %>
-<div class="alert alert-warning alert-dismissible" role="alert">
+<div class="alert alert-warning alert-dismissible" role="alert" data-dismiss="alert">
         <h4><%= flash[:alert] %></h4>
 </div>
 <% end %>
 
+<style>
 
+#LoginMessage{
+	margin-top: 12px;
+}
+</style>
