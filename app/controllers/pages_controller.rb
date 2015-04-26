@@ -22,6 +22,9 @@ class PagesController < ApplicationController
 	def wiki
 	end
 
+    def result
+    end
+
     def profile
 	    @user = User.find_by(uid: session[:user_id])
     end
