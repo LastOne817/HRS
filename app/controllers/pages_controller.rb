@@ -19,6 +19,9 @@ class PagesController < ApplicationController
     def checklist
     end
 
+	def wiki
+	end
+
     def profile
 	    @user = User.find_by(uid: session[:user_id])
     end

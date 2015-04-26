@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150422171452) do
     t.string   "provider"
     t.string   "uid"
     t.string   "username"
+    t.string   "password"
     t.string   "email"
     t.binary   "image"
     t.string   "token"
