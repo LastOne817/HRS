@@ -1,17 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  provider: MyString
-  uid: MyString
-  name: MyString
-  image: MyString
-  token: MyString
-  expires_at: 2015-04-23 02:14:52
 
-two:
-  provider: MyString
-  uid: MyString
-  name: MyString
-  image: MyString
-  token: MyString
-  expires_at: 2015-04-23 02:14:52
+one:
+  email: already@signed.in
+  username: FuckYou
+  password: asdfasdf
+  uid: 1 

@@ -50,5 +50,6 @@ group :development, :test do
   gem 'twitter-bootstrap-rails'
   gem 'therubyracer'
   gem 'less-rails'
+  gem 'simplecov', :require => false
 end
 
