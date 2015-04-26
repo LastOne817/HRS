@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
    def signup
 	@user = User.new(:email => params[:email])
-	@user.nickname = params[:nickname]
+	@user.username = params[:nickname]
 	if params[:password] == params[:password_confirmation]
 	   # @user.password = params[:password]
 	    if @user.save
