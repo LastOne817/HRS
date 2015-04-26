@@ -17,15 +17,10 @@ class UsersController < ApplicationController
    end
 
    def signup
-	@errorparam = 0
-	if User.find_by(:email => params[:email]) != nil
-	    flash[:alert] = "email already exist"
-	    @errorparam = 1
-	end
 
 	@user = User.new(:email => params[:email])
 	@user.username = params[:username]
-	if params[:password] == params[:password_confirmation] && @errorparam == 0
+	if params[:password] == params[:password_confirmation] 
 	    @user.password = params[:password]
 	    if @user.save
 		@user.uid = @user.id
@@ -35,11 +30,14 @@ class UsersController < ApplicationController
 		session[:user_id] = @user.uid
             	redirect_to root_path
 	    else
-		flash[:alert] ="Username is invalid"
+
+		if @user.errors[:email].length!=0
+		    flash[:alert]="Email already exist"
+		elsif @user.errors[:password].length!=0
+		    flash[:alert]="Password should be 5~20 characters"
+		end
 		redirect_to :back
 	    end
-	elsif @errorparam == 1
-	    redirect_to :back
 	else
 	    flash[:alert]="Password Confirm is incorrect"
 	    redirect_to :back
