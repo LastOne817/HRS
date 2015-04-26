@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     get 'pages/login'
     get 'pages/signup'
     get 'pages/profile'
-	get 'pages/wiki'
+    get 'pages/wiki'
+    post 'pages/result'
 
     post 'users/signup', to: 'users#signup'
     post 'users/login', to: 'users#login'
