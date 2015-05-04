@@ -6,8 +6,13 @@ class SessionsController < ApplicationController
                 redirect_to :back
             else
                 user = User.omniauth(env['omniauth.auth'])
-                session[:user_id] = user.uid
-                redirect_to root_url
+                if user.save
+                    session[:user_id] = user.uid
+                    redirect_to root_url
+                else
+                    flash[:alert]="Failed to Signin"
+                    redirect_to :back
+                end
             end
         elsif(env['omniauth.params']['type'] == 'login')
             if User.find_by(uid: env['omniauth.auth'].uid)

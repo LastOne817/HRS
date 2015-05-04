@@ -3,27 +3,39 @@ class UsersController < ApplicationController
 
    def login
 	@user = User.find_by(email: params[:email])
-	
-	#if @user && @user.password == params[:password]
-	if @user != nil   
+	if @user == nil
+	    flash[:alert] = "email doesn't exist"
+	    redirect_to :back	
+	elsif @user.password == params[:password]   
 	    session[:user_id] = @user.uid
+	    flash[:alert] = " Logged in Successfully"
 	    redirect_to root_path
 	else
-	    flash[:alert] = "Incorrect email or password"
+	    flash[:alert] = "Incorrect email and password combination"
 	    redirect_to :back
 	end
    end
 
    def signup
+
 	@user = User.new(:email => params[:email])
-	@user.nickname = params[:nickname]
-	if params[:password] == params[:password_confirmation]
-	   # @user.password = params[:password]
+	@user.username = params[:username]
+	if params[:password] == params[:password_confirmation] 
+	    @user.password = params[:password]
 	    if @user.save
+		@user.uid = @user.id
+		@user.image = "http://cdn.ddanzi.com/201310-images/1531864.jpg"
+		@user.save
+		flash[:alert] = "Signed in successfully"
 		session[:user_id] = @user.uid
             	redirect_to root_path
 	    else
-		flash[:alert] ="Username is invalid"
+
+		if @user.errors[:email].length!=0
+		    flash[:alert]="Email already exist"
+		elsif @user.errors[:password].length!=0
+		    flash[:alert]="Password should be 5~20 characters"
+		end
 		redirect_to :back
 	    end
 	else
@@ -59,12 +71,9 @@ class UsersController < ApplicationController
 
    def deleteUser
 	@user = User.find_by(uid: params[:uid])
-    #if @user.password == params[:confirm_password]
-    flash[:alert] = "your account is deleted successfully"
-    puts session[:user_id]
-    session[:user_id] = nil
-    @user.destroy
-    puts session[:user_id]
-    redirect_to root_path
+    	flash[:alert] = "your account is deleted successfully"
+    	session[:user_id] = nil
+    	@user.destroy
+    	redirect_to root_path
    end
 end
