@@ -54,17 +54,24 @@ class UsersController < ApplicationController
    end
 
    def changePhoto
+	 @user = User.find_by(uid: session[:user_id])
+	 @user.image = params[:photo].read
+	 @user.save
+	 flash[:alert]="Photo Changed Successfully"
+	 redirect_to root_path 
    end
 
    def changePassword
-	@user = User.find_by(email: params[:email])
+	@user = User.find_by(uid: session[:user_id])
 
-	if @user.authenticate(params[:password]) && params[:password] == params[:password_confirmation]
-	    
-	    #TODO check validate new password and change or print error message
-
+	if params[:current_password] == @user.password and params[:new_password] == params[:confirm_password]
+	    @user.password=params[:new_password]
+	    @user.save
+	    flash[:alert]="Password has changed sucessfully"
+	    redirect_to root_path
 	else
-	    flash[:alert] = "Incorrect Password"
+	    flash[:alert]="Incorrect Input combination"
+	    redirect_to :back
 	end
 
    end
