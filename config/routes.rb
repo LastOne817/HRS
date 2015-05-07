@@ -21,6 +21,12 @@ Rails.application.routes.draw do
     post 'users/login', to: 'users#login'
     get 'users/deleteUser', to: 'users#deleteUser'
     get 'users/logout'
+
+    post 'articles/create'
+    post 'comments/create'
+    post 'comments/delete'
+
+    resources :articles
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
