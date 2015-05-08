@@ -67,8 +67,8 @@ class UsersController < ApplicationController
    def changePassword
 	@user = User.find_by(uid: session[:user_id])
 
-	if params[:current_password] == @user.password and params[:new_password] == params[:confirm_password]
-	    @user.password=params[:new_password]
+	if Digest::SHA256.hexdigest(@user.salt + params[:current_password]) == @user.password &&  params[:new_password] == params[:confirm_password]
+	    @user.password = Digest::SHA256.hexdigest(@user.salt + params[:new_password])
 	    @user.save
 	    flash[:alert]="Password has changed sucessfully"
 	    redirect_to root_path
