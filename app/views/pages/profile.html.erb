@@ -105,7 +105,7 @@
 
 <div class="modal" id="Modal-Change-Photo" role="dialog">
     <div class="modal-dialog modal-lg">
-<%= form_tag(controller: "users", action: "changePhoto", method: "post", multipart: true) do %>
+<%= form_tag({controller: "users", action: "changePhoto"}, method: "post", multipart: true) do %>
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
