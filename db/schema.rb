@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150422171452) do
     t.string   "email"
     t.binary   "image"
     t.string   "token"
+    t.string   "salt"
     t.datetime "expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

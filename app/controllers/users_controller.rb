@@ -1,3 +1,5 @@
+require 'digest'
+require 'active_support/all'
 class UsersController < ApplicationController
    include UsersHelper
 
@@ -6,7 +8,7 @@ class UsersController < ApplicationController
 	if @user == nil
 	    flash[:alert] = "email doesn't exist"
 	    redirect_to :back	
-	elsif @user.password == params[:password]   
+	elsif @user.password == Digest::SHA256.hexdigest(@user.salt + params[:password])
 	    session[:user_id] = @user.uid
 	    flash[:alert] = " Logged in Successfully"
 	    redirect_to root_path
@@ -20,8 +22,12 @@ class UsersController < ApplicationController
 
 	@user = User.new(:email => params[:email])
 	@user.username = params[:username]
-	if params[:password] == params[:password_confirmation] 
-	    @user.password = params[:password]
+	if params[:password].length < 5 || params[:password].length >20
+	     flash[:alert]="Password should be 5~20 characters"
+	    redirect_to :back
+	elsif params[:password] == params[:password_confirmation]
+	    @user.salt = SecureRandom.base64(8)
+	    @user.password =  Digest::SHA256.hexdigest(@user.salt + params[:password])
 	    if @user.save
 		@user.uid = @user.id
 		@user.image = "http://cdn.ddanzi.com/201310-images/1531864.jpg"
@@ -33,8 +39,8 @@ class UsersController < ApplicationController
 
 		if @user.errors[:email].length!=0
 		    flash[:alert]="Email already exist"
-		elsif @user.errors[:password].length!=0
-		    flash[:alert]="Password should be 5~20 characters"
+	#	elsif @user.errors[:password].length!=0
+	#	    flash[:alert]="Password should be 5~20 characters"
 		end
 		redirect_to :back
 	    end
@@ -42,9 +48,6 @@ class UsersController < ApplicationController
 	    flash[:alert]="Password Confirm is incorrect"
 	    redirect_to :back
 	end
-   end
-
-   def signup_facebook
    end
 
    def logout

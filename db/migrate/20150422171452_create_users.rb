@@ -6,8 +6,9 @@ class CreateUsers < ActiveRecord::Migration
             t.string :username
             t.string :password
             t.string :email
-            t.binary:image
+            t.binary :image
             t.string :token
+	    t.string :salt 
             t.datetime :expires_at
 
             t.timestamps null: false
