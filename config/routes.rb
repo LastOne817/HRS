@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get 'users/logout'
     post 'users/changePassword', to: 'users#changePassword'
     post 'users/changePhoto', to: 'users#changePhoto'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

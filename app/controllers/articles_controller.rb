@@ -4,8 +4,8 @@ class ArticlesController < ApplicationController
     end
 
     def create
-        @article = Article.new(article_params)
-        if @article.save
+        @article = Article.new(hobby_first: params[:first],hobby_second: params[:second],hobby_third: params[:third], hobby_fourth: params[:fourth])
+	if @article.save
             redirect_to @article
         else
             render 'new'
@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
 
     def show
         @article = Article.find(params[:id])
+	@comments = Comment.where(:article_id => params[:id])
     end
 
     def board 
@@ -24,12 +25,7 @@ class ArticlesController < ApplicationController
     def destroy
         @article = Article.find(params[:id])
         @article.destroy
-        redirect_to articles_path
+        redirect_to root_path
     end
 
-    private
-    def article_params
-        params.require(:article).permit(:title, :text, :user)
-        # Validating 
-    end
 end
