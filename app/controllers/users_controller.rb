@@ -60,12 +60,12 @@ class UsersController < ApplicationController
 	 @user = User.find_by(uid: session[:user_id])
 	
 	 uploaded_io = params[:photo]
-  	 File.open(Rails.root.join('public', 'uploads', @user.id.to_s), 'wb') do |file|
+  	 File.open(Rails.root.join('public', 'profile', @user.id.to_s), 'wb') do |file|
     	 	file.write(uploaded_io.read)
   	 end
 	# uploaded_io.original_filename
 
-	 @user.image = "/uploads/" + @user.id.to_s
+	 @user.image = "/profile/" + @user.id.to_s
 	 @user.save
 	 flash[:alert]="Photo Changed Successfully"
 	 redirect_to root_path 
