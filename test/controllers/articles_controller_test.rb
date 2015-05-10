@@ -8,5 +8,10 @@ class ArticlesControllerTest < ActionController::TestCase
       assert_redirected_to "/articles/980190963"
   end
 
+  test '#article_show' do
+      session[:user_id]=nil
+      get :show, {:id => 1}
+      assert true
+  end
   
 end

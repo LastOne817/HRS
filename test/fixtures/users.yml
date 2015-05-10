@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+sampleuser:
+  id: 1
   email: already@signed.in
   username: FuckYou
   password: 331395dfb4aa66c3f0b9d44e00056097525f932da154f41c4c47209c7e8d5ec2

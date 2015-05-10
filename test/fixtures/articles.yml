@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 
-one: 
+samplearticle: 
   id: 1
   hobby_first: 1
   hobby_second: 2
