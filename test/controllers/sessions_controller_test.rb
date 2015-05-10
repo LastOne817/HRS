@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
+    setup do
+        request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:facebook]
+    end
+
     test '#signup_trial' do
         get :new
         assert_redirected_to '/auth/facebook?type=signin'
@@ -16,8 +20,52 @@ class SessionsControllerTest < ActionController::TestCase
         assert session[:user_id] == nil
         assert_redirected_to root_path
     end
-    """test '#signup_success' do
-        get :new
-        get :auth, 'provider' => 'facebook', 'code' => 'AQALhVnkojZxDKB42KQf0qww0K3gSmeXt_I90BUcVrEfk9TfO2ROBVr-mKEJNo9EZmpYZHIX1jsGCsGBmndx2kpgTo8bF-rzI_Znth9vyoZYq-qPk-ZRBNH8JboqvP20NFlk6AdsXy-69uH1_1OFrLxTmvojYjLismnQORcOifjJDrQx1qDij0F64oltcUbei5tt-dnrZa9o3TipcgSqLvldm8NZwNJiqk6NzfDrgwuph_qDfKfhl31dkzUtS8YlhMhFGJ2pDiwiLVJzY2JUdcQ_RKqgzF4pKQNm3Ppo0U4yIlbi0htq-SRThLSn8TCokEbInfi7Bn2wCmevGwuUSrGY', 'state' => 'b2c7d0c8a6dd47d347f84f4b42ab5f953e010f84863ced96'
-    end"""
+
+    test '#signup_success' do
+        request.env['omniauth.params'] = {'type' => 'signin' }
+        get :auth, 'provider' => 'facebook', 'type' => 'signin'
+        assert session[:user_id] == User.last.uid
+    end
+
+    test '#signup_failed_already' do
+        request.env['omniauth.params'] = {'type' => 'signin' }
+        request.env['HTTP_REFERER'] = root_path
+        get :auth, 'provider' => 'facebook', 'type' => 'signin'
+        get :auth, 'provider' => 'facebook', 'type' => 'signin'
+        assert_equal flash[:alert], 'Already registered'
+        assert_redirected_to root_path
+    end
+
+    test '#signup_duplicate_email' do
+        request.env['omniauth.params'] = {'type' => 'signin' }
+        request.env['HTTP_REFERER'] = root_path
+        get :auth, 'provider' => 'facebook', 'type' => 'signin'
+        request.env['omniauth.auth'].uid = '543215432154321'
+        get :auth, 'provider' => 'facebook', 'type' => 'signin'
+        assert_equal flash[:alert], 'Failed to Signin'
+        assert_redirected_to root_path
+    end
+
+    test '#login_success' do
+        request.env['omniauth.params'] = {'type' => 'signin' }
+        get :auth, 'provider' => 'facebook', 'type' => 'signin'
+        get :destroy
+        request.env['omniauth.params'] = {'type' => 'login' }
+        get :auth, 'provider' => 'facebook', 'type' => 'login'
+        assert session[:user_id] == User.last.uid
+    end
+    
+    test '#login_failure' do
+        request.env['omniauth.params'] = {'type' => 'login' }
+        request.env['HTTP_REFERER'] = root_path
+        get :auth, 'provider' => 'facebook', 'type' => 'login'
+        assert_equal flash[:alert], 'Not registered'
+        assert_redirected_to root_path
+    end
+
+    test '#auth_strange_url' do
+        request.env['omniauth.params'] = {'type' => 'strange_url' }
+        get :auth, 'provider' => 'facebook', 'type' => 'login'
+        assert_redirected_to root_path
+    end
 end
