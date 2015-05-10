@@ -1,3 +1,5 @@
+require 'digest'
+require 'active_support/all'
 class UsersController < ApplicationController
    include UsersHelper
 
@@ -6,7 +8,7 @@ class UsersController < ApplicationController
 	if @user == nil
 	    flash[:alert] = "email doesn't exist"
 	    redirect_to :back	
-	elsif @user.password == params[:password]   
+	elsif @user.password == Digest::SHA256.hexdigest(@user.salt + params[:password])
 	    session[:user_id] = @user.uid
 	    flash[:alert] = " Logged in Successfully"
 	    redirect_to root_path
@@ -20,8 +22,12 @@ class UsersController < ApplicationController
 
 	@user = User.new(:email => params[:email])
 	@user.username = params[:username]
-	if params[:password] == params[:password_confirmation] 
-	    @user.password = params[:password]
+	if params[:password].length < 5 || params[:password].length >20
+	     flash[:alert]="Password should be 5~20 characters"
+	    redirect_to :back
+	elsif params[:password] == params[:password_confirmation]
+	    @user.salt = SecureRandom.base64(8)
+	    @user.password =  Digest::SHA256.hexdigest(@user.salt + params[:password])
 	    if @user.save
 		@user.uid = @user.id
 		@user.image = "http://cdn.ddanzi.com/201310-images/1531864.jpg"
@@ -33,8 +39,8 @@ class UsersController < ApplicationController
 
 		if @user.errors[:email].length!=0
 		    flash[:alert]="Email already exist"
-		elsif @user.errors[:password].length!=0
-		    flash[:alert]="Password should be 5~20 characters"
+	#	elsif @user.errors[:password].length!=0
+	#	    flash[:alert]="Password should be 5~20 characters"
 		end
 		redirect_to :back
 	    end
@@ -44,9 +50,6 @@ class UsersController < ApplicationController
 	end
    end
 
-   def signup_facebook
-   end
-
    def logout
 	flash[:alert] = "logged out successfully"
 	session[:user_id] = nil
@@ -54,17 +57,31 @@ class UsersController < ApplicationController
    end
 
    def changePhoto
+	 @user = User.find_by(uid: session[:user_id])
+	
+	 uploaded_io = params[:photo]
+  	 File.open(Rails.root.join('public', 'profile', @user.id.to_s), 'wb') do |file|
+    	 	file.write(uploaded_io.read)
+  	 end
+	# uploaded_io.original_filename
+
+	 @user.image = "/profile/" + @user.id.to_s
+	 @user.save
+	 flash[:alert]="Photo Changed Successfully"
+	 redirect_to root_path 
    end
 
    def changePassword
-	@user = User.find_by(email: params[:email])
+	@user = User.find_by(uid: session[:user_id])
 
-	if @user.authenticate(params[:password]) && params[:password] == params[:password_confirmation]
-	    
-	    #TODO check validate new password and change or print error message
-
+	if Digest::SHA256.hexdigest(@user.salt + params[:current_password]) == @user.password &&  params[:new_password] == params[:confirm_password]
+	    @user.password = Digest::SHA256.hexdigest(@user.salt + params[:new_password])
+	    @user.save
+	    flash[:alert]="Password has changed sucessfully"
+	    redirect_to root_path
 	else
-	    flash[:alert] = "Incorrect Password"
+	    flash[:alert]="Incorrect Input combination"
+	    redirect_to :back
 	end
 
    end
