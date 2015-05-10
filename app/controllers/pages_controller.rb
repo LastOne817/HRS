@@ -26,7 +26,7 @@ class PagesController < ApplicationController
     end
 
     def profile
-	    @user = User.find_by(uid: session[:user_id])
+	    @user = User.find(session[:user_id])
     end
 
 private

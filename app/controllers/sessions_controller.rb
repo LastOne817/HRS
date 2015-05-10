@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
             else
                 user = User.omniauth(request.env['omniauth.auth'])
                 if user.save
-                    session[:user_id] = user.uid
+                    session[:user_id] = user.id
                     redirect_to root_url
                 else
                     flash[:alert]="Failed to Signin"
@@ -15,8 +15,8 @@ class SessionsController < ApplicationController
                 end
             end
         elsif(request.env['omniauth.params']['type'] == 'login')
-            if User.find_by(uid: request.env['omniauth.auth'].uid)
-                session[:user_id] = request.env['omniauth.auth'].uid
+            if user = User.find_by(uid: request.env['omniauth.auth'].uid)
+                session[:user_id] = user.id
                 redirect_to root_url
             else
                 flash[:alert] = "Not registered"
