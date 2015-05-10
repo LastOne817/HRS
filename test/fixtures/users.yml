@@ -3,5 +3,6 @@
 one:
   email: already@signed.in
   username: FuckYou
-  password: asdfasdf
+  password: 331395dfb4aa66c3f0b9d44e00056097525f932da154f41c4c47209c7e8d5ec2
+  salt: aassddff
   uid: 1 
