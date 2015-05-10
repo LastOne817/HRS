@@ -1,0 +1,188 @@
+
+<%= render '/shared/header' %>
+
+    <div class="container marketing">
+
+      <div class="row">
+        <div class="col-lg-3">
+          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Hobby <%= @article.hobby_first %></h2>
+          <p> Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description. </p>
+          <p> 
+          	<a class="btn btn-primary" href="#" role="button">like</a>
+
+          	<a class="btn btn-warning" href="#" role="button">dislike</a>
+          </p>
+          <p><a class="btn btn-default" href="#" role="button">Go to wiki &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-3">
+          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Hobby <%= @article.hobby_second %> </h2>
+          <p> Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description. </p>
+          <p>
+			<a class="btn btn-primary" href="#" role="button">like</a>
+
+          	<a class="btn btn-warning" href="#" role="button">dislike</a>
+          </p>
+          <p><a class="btn btn-default" href="#" role="button">Go to wiki &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-3">
+          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Hobby <%= @article.hobby_third %></h2>
+          <p> Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description. </p>
+          <p>
+			<a class="btn btn-primary" href="#" role="button">like</a>
+
+          	<a class="btn btn-warning" href="#" role="button">dislike</a>
+          </p>
+          <p><a class="btn btn-default" href="#" role="button">Go to wiki &raquo;</a></p>
+        </div>
+        <div class="col-lg-3">
+          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Hobby <%= @article.hobby_fourth %></h2>
+          <p> Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description. </p>
+          <p>
+			<a class="btn btn-primary" href="#" role="button">like</a>
+
+          	<a class="btn btn-warning" href="#" role="button">dislike</a>
+          </p>
+          <p><a class="btn btn-default" href="#" role="button">Go to wiki &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+    </div> 
+
+
+
+
+    <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="page-header">
+                    <h1><small class="pull-right"> <%= @comments.length %> comments</small> Comments </h1>
+                  </div> 
+                   <div class="comments-list">
+		    <% @comments.each do |comment| %>
+                       <div class="media">
+                           
+			   <% if session[:user_id]!=nil &&  User.find(session[:user_id]).id == comment.user_id %>
+				<div class="pull-right">
+					<form action="/comments/delete" method="post"> 
+						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal<%= comment.id %>" >
+  							<i class="fa fa-times"></i> Delete</button>
+
+						<div id="modal<%= comment.id %>" class="modal" role="dialog">
+  							<div class="modal-dialog">
+
+							    <div class="modal-content">
+    								  <div class="modal-header">
+        								<h4 class="modal-title">Delete Comment</h4>
+      								  </div>
+      							    <div class="modal-body">
+        							<p>You really want to delete comment?</p>
+      							    </div>
+      							<div class="modal-footer">
+        							<button type="submit" class="btn btn-danger" name="comment_id" value=<%= comment.id %>>Delete Comment</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      							</div>
+    							</div>
+
+  						</div>
+						</div>
+					</form>
+				</div>
+			   <% end %>
+
+				<p class="pull-right"><small> <%= comment.created_at %> </small></p>
+
+                            <div class="media-left">
+                              <img class="img-circle profile-img" src=<%= User.find(comment.user_id).image %>>
+                            </div>
+                            <div class="media-body">
+                                
+                              <h4 class="media-heading user_name"> <%= User.find_by(:uid => comment.user_id).username %></h4>
+                              <%= comment.text %>
+                              
+                            </div>
+                          </div> 
+		    <% end %>
+
+	<% if session[:user_id].nil? %>
+
+		<div class="media">
+                        <div class="meda-body">
+                                <p class="login-msg">Log in if you want to comment.</p>
+                        </div>
+                </div>
+	<% else %>
+
+		<form action="/comments/create" method="post">
+		     <div class="media">
+			<div class="row">
+                           <div class="col-md-10">
+                
+			    <div class="media-left">
+                              <img class="img-circle profile-img" src=<%= User.find(session[:user_id]).image %> >
+                            </div>
+                            <div class="media-body">
+                              <textarea name="text"  rows="4" cols="90"></textarea>
+                            </div>
+                            </div>
+			    <div class="col-md-2">
+			       <button type="submit" class="btn btn-primary btn-comment"><h3>Comment</h3></button>
+			    </div>
+                          </div>
+		<%= hidden_field_tag "article_id", @article.id %>
+		</form>
+
+	<% end %>
+                </div>
+            </div>
+        </div>
+
+<%= render 'shared/footer' %>
+
+<style>
+
+
+/* recommended */
+.marketing {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.marketing .col-lg-3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-3 p {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+/* comment */
+
+.user_name{
+    font-size:14px;
+    font-weight: bold;
+}
+.comments-list .media{
+    border-bottom: 1px dotted #ccc;
+}
+
+.profile-img{
+	width: 80px;
+	height: auto;
+}
+
+.btn-comment{
+	margin-top: 10px;
+}
+
+.login-msg{
+	text-align: center;
+}
+</style>
