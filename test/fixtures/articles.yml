@@ -1,1 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+one: 
+  hobby_first: 1
+  hobby_second: 2
+  hobby_third: 3
+  hobby_fourth: 4
