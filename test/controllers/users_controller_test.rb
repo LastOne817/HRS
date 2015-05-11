@@ -64,7 +64,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test '#deleteUser' do
      request.env["HTTP_REFERER"] = "/pages/profile"
-     get :deleteUser, {'uid' => '1'}
+     get :deleteUser, {'id' => '1'}
      assert_redirected_to root_path
      assert flash[:alert] == "your account is deleted successfully"
   end
