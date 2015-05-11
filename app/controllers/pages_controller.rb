@@ -19,18 +19,18 @@ class PagesController < ApplicationController
     def checklist
     end
 
-	def wiki
-	end
+    def wiki
+    end
 
     def result
     end
 
     def profile
-	    @user = User.find(session[:user_id])
+        @user = User.find(session[:user_id])
     end
 
-private
+    private
     def makeAlert
-	flash.now[:alert] = flash[:alert]
+        flash.now[:alert] = flash[:alert]
     end
 end

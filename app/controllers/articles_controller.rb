@@ -1,8 +1,8 @@
 class ArticlesController < ApplicationController
-    
+
     def create
         @article = Article.new(hobby_first: params[:first],hobby_second: params[:second],hobby_third: params[:third], hobby_fourth: params[:fourth])
-	if @article.save
+        if @article.save
             redirect_to @article
         else
             redirect_to :back
@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
 
     def show
         @article = Article.find(params[:id])
-	@comments = Comment.where(:article_id => params[:id])
+        @comments = Comment.where(:article_id => params[:id])
     end
 
     def board 

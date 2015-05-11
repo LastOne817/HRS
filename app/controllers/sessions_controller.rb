@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
     def new
         redirect_to '/auth/facebook?type=signin'
     end
-    
+
     def destroy
         session[:user_id] = nil
         redirect_to root_url
