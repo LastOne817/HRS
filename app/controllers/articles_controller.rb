@@ -1,14 +1,11 @@
 class ArticlesController < ApplicationController
-    def new
-        @article = Article.new
-    end
-
+    
     def create
         @article = Article.new(hobby_first: params[:first],hobby_second: params[:second],hobby_third: params[:third], hobby_fourth: params[:fourth])
 	if @article.save
             redirect_to @article
         else
-            render 'new'
+            redirect_to :back
         end
     end
 

@@ -1,7 +1,4 @@
 class CommentsController < ApplicationController
-    def new
-        @comment= Comment.new
-    end
 
     def create
         @comment= Comment.new(:text => params[:text])
@@ -14,15 +11,6 @@ class CommentsController < ApplicationController
 	    flash[:alert] = "Incorrect Comment"
             redirect_to :back
         end
-    end
-
-    def show
-        @comment = Comment.find(params[:id])
-    end
-
-    def list 
-        @comment = Comment.all
-        # Get all items from database
     end
 
     def delete
