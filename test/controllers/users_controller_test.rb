@@ -68,4 +68,37 @@ class UsersControllerTest < ActionController::TestCase
      assert_redirected_to root_path
      assert flash[:alert] == "your account is deleted successfully"
   end
+
+  #changePassword
+
+  test '#changePassword_success' do
+     request.env["HTTP_REFERER"] = "/pages/profile"
+     session[:user_id] = 1
+     post :changePassword, {'current_password' => 'asdfasdf', 'new_password' => 'fdsafdsa', 'confirm_password' => 'fdsafdsa' }
+     assert_redirected_to root_path
+     assert flash[:alert] == "Password has changed sucessfully"
+  end
+
+  test '#changePassword_failure' do
+     request.env["HTTP_REFERER"] = "/pages/profile"
+     session[:user_id] = 1
+     post :changePassword, {'current_password' => 'asdfasdf', 'new_password' => 'fdsafdsa', 'confirm_password' => 'asdfasdf' }
+     assert_redirected_to pages_profile_path
+     assert flash[:alert] == "Incorrect Input combination"
+  end
+
+  #changePhoto
+  test '#changePhoto_success' do
+     request.env["HTTP_REFERER"] = "/pages/profile"
+     session[:user_id] = 1
+   #  file = File.read(Rails.root.join('app', 'assets', 'images', 'logo.png'))
+   
+     file = File.new(Rails.root + 'app/assets/images/logo.png')
+     upload = ActionDispatch::Http::UploadedFile.new(:tempfile => file, :filename => File.basename(file))
+     post :changePhoto, {'photo' => upload}
+     assert_redirected_to root_path
+     assert flash[:alert] == "Photo Changed Successfully"
+  end
+
+
 end
