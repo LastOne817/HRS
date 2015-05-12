@@ -1,11 +1,17 @@
 class ArticlesController < ApplicationController
     
     def create
-        @article = Article.new(hobby_first: params[:first],hobby_second: params[:second],hobby_third: params[:third], hobby_fourth: params[:fourth])
-	if @article.save
-            redirect_to @article
-        else
+        if params[:q1]==nil || params[:q2]==nil || params[:q3]==nil || params[:q4]==nil
+            flash[:alert] = "Please answer the all questions"
             redirect_to :back
+        else
+        
+            @article = Article.new(hobby_first: params[:q1],hobby_second: params[:q2],hobby_third: params[:q3], hobby_fourth: params[:q4])
+	    if @article.save
+                redirect_to @article
+            else
+                redirect_to :back
+            end
         end
     end
 
