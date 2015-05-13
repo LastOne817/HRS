@@ -99,7 +99,7 @@
                             </div>
                             <div class="media-body">
                                 
-                              <h4 class="media-heading user_name"> <%= User.find_by(:uid => comment.user_id).username %></h4>
+                              <h4 class="media-heading user_name"> <%= User.find(comment.user_id).username %></h4>
                               <%= comment.text %>
                               
                             </div>
