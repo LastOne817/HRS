@@ -15,6 +15,13 @@ When(/^I fill E\-mail, Nickname, Password, Password confirm$/) do
     fill_in('signup_username', :with => "behavior")
     fill_in('signup_password', :with => "cucumberbdd")
     fill_in('signup_password_confirmation', :with => "cucumberbdd")
-    click_button('signup_submit_button') 
+end
+
+When(/^I press "(.*?)" button$/) do |arg1|
+    click_button(arg1)
+end
+
+Then(/^the main page should be seen and I should see welcoming message$/) do
+   assert page.current_path == pages_main_path
 end
 
