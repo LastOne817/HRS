@@ -22,7 +22,8 @@ When(/^I fill current password and new password and new password confirm$/) do
     fill_in('change_password_password_confirm', :with => "newpassword")
 end
 
-Then(/^I should see the main page with the message "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^I upload a photo$/) do
+  attach_file(:photo, File.join(Rails.root, 'features', 'upload-files', 'clippers.png'))
 end
+
 
