@@ -22,7 +22,7 @@ When(/^I press "(.*?)" button$/) do |arg1|
     click_button(arg1)
 end
 
-Then(/^the main page should be seen and I should see welcoming message$/) do
+Then(/^the main page should be seen$/) do
    assert page.current_path == pages_main_path
 end
 
@@ -37,3 +37,6 @@ Then(/^the failure message given$/) do
    assert page.has_content?("Password Confirm is incorrect")
 end
 
+Then(/^I should see the message "(.*?)"$/) do |arg1|
+   assert page.has_content?(arg1)
+end
