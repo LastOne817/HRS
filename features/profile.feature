@@ -17,5 +17,11 @@ And I press "change_password_submit_button" button
 Then the main page should be seen
 And I should see the message "Password has changed sucessfully"
 
+Scenario: Edit Profile - Delete User
 
+Given the profile page of the site with logged in
+When I press "profile_delete_user" button
+And I press "delete_user_submit_button" button
+Then the main page should be seen
+And I should see the message "your account is deleted successfully"
 
