@@ -8,7 +8,7 @@
               <div class="row">
                 <div class="col-md-3" align="center"> 
                     <img alt="User Pic" src=<%= @user.image %> class="img-circle img-profile"> <br>
-                		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-Change-Photo"><h4>Change Photo</h4></button>
+                		<button type="button" class="btn btn-primary" id="profile_change_photo" data-toggle="modal" data-target="#Modal-Change-Photo"><h4>Change Photo</h4></button>
                 	 </div>
                 
                 <div class="col-md-9"> 
@@ -117,7 +117,7 @@
         </div>
         
         <div class="modal-footer">
-          <%= submit_tag("Change") %>
+          <%= submit_tag("Change", id: "change_photo_submit_button") %>
           <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
         </div>
       </div>
