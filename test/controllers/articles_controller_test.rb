@@ -21,9 +21,4 @@ class ArticlesControllerTest < ActionController::TestCase
       get :show, {:id => 1}
       assert true
   end
-
-  test '#article_destroy' do
-     post :destroy, {:id => 1}
-     assert_redirected_to root_path
-  end
 end
