@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422171452) do
+ActiveRecord::Schema.define(version: 20150508032739) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "hobby_first"
@@ -32,6 +32,29 @@ ActiveRecord::Schema.define(version: 20150422171452) do
 
   add_index "comments", ["article_id"], name: "index_comments_on_article_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "hobbies", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "idfs", force: :cascade do |t|
+    t.string   "keyword"
+    t.decimal  "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tfs", force: :cascade do |t|
+    t.string   "keyword"
+    t.decimal  "value"
+    t.integer  "hobby_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tfs", ["hobby_id"], name: "index_tfs_on_hobby_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "provider"

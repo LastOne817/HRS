@@ -1,4 +1,4 @@
-<% if session[:user_id].nil? %>
+<!--<%if session[:user id].nil? %>
 <div class="browse">
 
   <div class="container">
@@ -6,7 +6,7 @@
       <%= link_to image_tag("logo.png", border: 0), action: 'main', controller: 'pages' %>
     </div>
     <ul>
-	  <li><h3><a href="http://revreserver.me:7109">Wiki</a></h3></li>
+	  <li><h3><%= link_to "Wiki", controller:"pages", action: "wiki" %></h3></li>
       <li><h3><%= link_to "Recommendation", controller: "pages", action: "checklist" %></h3></li>
       <li class="right"><h3><%= link_to "Sign up", controller: "pages", action: "signup" %></h3></li>
       <li class="right"><h3><%= link_to "Log in", controller: "pages", action: "login"  %></h3></li>
@@ -15,7 +15,6 @@
 </div>
 
 <% else %>
-
 <div class="browse">
 
   <div class="container">
@@ -35,24 +34,24 @@
 
 <% end %>
 
-
 <% if flash[:alert] != nil %>
 <div class="alert alert-warning alert-dismissible" id="AlertBox" role="alert" data-dismiss="alert">
         <h4 id="AlertMessage"><%= flash[:alert] %></h4>
 </div>
 <% end %>
+-->
 
-<style>
+<div class="browse">
+	<div class="container">
+    	<div class="logo">
+	    	<a href="http://hrs.revreserver.me/pages/main"><img border="0" src="{{base_url}}/images/logo.png" alt="Logo" /></a>
+		</div>
+		<ul>
+			<li><h3><a href="http://revreserver.me:7109">Wiki</a></h3></li>
+			<li><h3><a href="http://hrs.revreserver.me/pages/checklist">Recommendation</a></h3></li>
+			<li class="right"><h3><a href="http://hrs.revreserver.me/users/logout">Log out</a></h3></li>
+			<li class="right"><h3><a href="http://hrs.revreserver.me/pages/profile">Edit Profile</a></h3></li>
+		</ul>
+	</div>
+</div>
 
-#LoginMessage{
-	margin-top: 12px;
-}
-
-#AlertMessage{
-	margin-bottom: 0px;
-}
-
-#AlertBox{
-	text-align: center;
-}
-</style>

@@ -5,6 +5,10 @@
   <meta name="MobileOptimized" content="width">
   <meta name="HandheldFriendly" content="true">
   <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" media="all" href="{{base_url}}/css/HRS.css" media="all">
+  <link rel="stylesheet" media="screen" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/> 
   <link rel="stylesheet" type="text/css" href="{{base_url}}/css/gollum.css" media="all">
   <link rel="stylesheet" type="text/css" href="{{base_url}}/css/editor.css" media="all">
   <link rel="stylesheet" type="text/css" href="{{base_url}}/css/dialog.css" media="all">
@@ -60,8 +64,8 @@
   <title>{{title}}</title>
 </head>
 <body>
-
+{{>_header}}
 {{{yield}}}
-
+{{>_footer}}
 </body>
 </html>
