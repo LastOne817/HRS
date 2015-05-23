@@ -51,5 +51,10 @@ group :development, :test do
   gem 'therubyracer'
   gem 'less-rails'
   gem 'simplecov', :require => false
+
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
