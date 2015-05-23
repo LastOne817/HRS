@@ -3,9 +3,9 @@
 
 require 'rake'
 require 'rake/testtask'
-Rake::TestTask.new do |t|
- t.pattern = 'test/**/*_test.rb'
-end
+#Rake::TestTask.new do |t|
+# t.pattern = 'test/**/*_test.rb'
+#end
 
 require File.expand_path('../config/application', __FILE__)
 
