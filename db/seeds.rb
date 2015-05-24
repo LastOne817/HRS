@@ -1,7 +1,108 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+rich = Property.create(name: "rich")
+poor = Property.create(name: "poor")
+active = Property.create(name: "active")
+inactive = Property.create(name: "inactive")
+ps = Property.create(name: "ps")
+solo = Property.create(name: "solo")
+team = Property.create(name: "team")
+online = Property.create(name: "online")
+offline = Property.create(name: "offline")
+handuse = Property.create(name: "handuse")
+art = Property.create(name: "art")
+mechanic = Property.create(name: "mechanic")
+collecting = Property.create(name: "collecting")
+gamble = Property.create(name: "gamble")
+writing = Property.create(name: "writing")
+competitive = Property.create(name: "competitive")
+non_competitive = Property.create(name: "non_competitive")
+observe = Property.create(name: "observe")
+persistence = Property.create(name: "persistence")
+
+rich.Keywords.create(name: "wealthy")
+rich.Keywords.create(name: "rich")
+rich.Keywords.create(name: "costly")
+rich.Keywords.create(name: "expensive")
+
+poor.Keywords.create(name: "poor")
+poor.Keywords.create(name: "needless")
+poor.Keywords.create(name: "inexpensive")
+poor.Keywords.create(name: "cheep")
+
+active.Keywords.create(name: "active")
+active.Keywords.create(name: "dynamic")
+active.Keywords.create(name: "energetic")
+active.Keywords.create(name: "venture")
+
+inactive.Keywords.create(name: "passive")
+inactive.Keywords.create(name: "static")
+inactive.Keywords.create(name: "inactive")
+inactive.Keywords.create(name: "lazy")
+
+ps.Keywords.create(name: "strategy")
+ps.Keywords.create(name: "tactics")
+ps.Keywords.create(name: "ingenious")
+ps.Keywords.create(name: "logical")
+
+solo.Keywords.create(name: "alone")
+solo.Keywords.create(name: "himself")
+solo.Keywords.create(name: "solitary")
+solo.Keywords.create(name: "independent")
+
+team.Keywords.create(name: "together")
+team.Keywords.create(name: "cooperative")
+team.Keywords.create(name: "communicate")
+team.Keywords.create(name: "dependent")
+
+online.Keywords.create(name: "network")
+online.Keywords.create(name: "online")
+online.Keywords.create(name: "simulate")
+online.Keywords.create(name: "virtual")
+
+offline.Keywords.create(name: "offline")
+offline.Keywords.create(name: "reality")
+
+handuse.Keywords.create(name: "skill")
+handuse.Keywords.create(name: "craft")
+handuse.Keywords.create(name: "delicate")
+
+art.Keywords.create(name: "artistic")
+art.Keywords.create(name: "creative")
+art.Keywords.create(name: "aesthetic")
+
+mechanic.Keywords.create(name: "mechanical")
+mechanic.Keywords.create(name: "machine")
+mechanic.Keywords.create(name: "assemble")
+mechanic.Keywords.create(name: "structure")
+
+collecting.Keywords.create(name: "collect")
+collecting.Keywords.create(name: "limited")
+collecting.Keywords.create(name: "antique")
+collecting.Keywords.create(name: "rare")
+
+gamble.Keywords.create(name: "luck")
+gamble.Keywords.create(name: "gamble")
+gamble.Keywords.create(name: "risk")
+gamble.Keywords.create(name: "guess")
+
+writing.Keywords.create(name: "poem")
+writing.Keywords.create(name: "write")
+writing.Keywords.create(name: "collumn")
+
+competitive.Keywords.create(name: "fight")
+competitive.Keywords.create(name: "competitive")
+competitive.Keywords.create(name: "aggressive")
+competitive.Keywords.create(name: "battle")
+
+non_competitive.Keywords.create(name: "peaceful")
+non_competitive.Keywords.create(name: "sincere")
+non_competitive.Keywords.create(name: "relax")
+
+observe.Keywords.create(name: "watch")
+observe.Keywords.create(name: "see")
+observe.Keywords.create(name: "observe")
+observe.Keywords.create(name: "look")
+observe.Keywords.create(name: "view")
+
+persistence.Keywords.create(name: "persist")
+persistence.Keywords.create(name: "endure")
+persistence.Keywords.create(name: "patience")
