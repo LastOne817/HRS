@@ -1,17 +1,86 @@
 class ArticlesController < ApplicationController
-
     def create
-        if params[:q1]==nil || params[:q2]==nil || params[:q3]==nil || params[:q4]==nil
-            flash[:alert] = "Please answer the all questions"
-            redirect_to :back
-        else
-        
-            @article = Article.new(hobby_first: params[:q1],hobby_second: params[:q2],hobby_third: params[:q3], hobby_fourth: params[:q4])
-	    if @article.save
-                redirect_to @article
-            else
-                redirect_to :back
+        respond = []
+        for i in 1..28
+            qid = 'q' + i.to_s
+            if !params.has_key?(qid)
+                flash[:alert] = "Please answer the all questions"
+                redirect_to :back and return
             end
+
+            value = nil
+            if params[qid] == "1"
+                value = 1
+            elsif params[qid] == "2"
+                value = 0.5
+            else
+                value = 0
+            end
+            respond.push({id: qid, value: value})
+        end
+
+        # TODO : Vector of questionList
+        # TODO : Compare all similarities between hobbies
+        # TODO : Generate
+
+        qPropVec = PropVec.new()
+        qMatch = [[{prop: "rich", weight: 1.0}],
+        [{prop: "team", weight: 0.333}, {prop: "online", weight: 0.5}],
+        [{prop: "solo", weight: 0.5}, {prop: "writing", weight: 0.333}],
+        [{prop: "ps", weight: 0.333}],
+        [{prop: "ps", weight: 0.333}, {prop: "observe", weight: 0.25}],
+        [{prop: "competitive", weight: 0.2}, {prop: "persistence", weight: 0.2}],
+        [{prop: "collecting", weight: 0.333}],
+        [{prop: "active", weight: 0.333}, {prop: "team", weight: 0.333}],
+        [{prop: "ps", weight: 0.333}, {prop: "persistence", weight: 0.2}],
+        [{prop: "gamble", weight: 0.333}, {prop: "competitive", weight: 0.2}],
+        [{prop: "mechianic", weight: 0.5}],
+        [{prop: "competitive", weight: 0.2}, {prop: "persistence", weight: 0.2}],
+        [{prop: "observe", weight: 0.25}, {prop: "persistence", weight: 0.2}],
+        [{prop: "competitive", weight: 0.2}, {prop: "team", weight: 0.333}],
+        [{prop: "handuse", weight: 0.333}],
+        [{prop: "collecting", weight: 0.333}],
+        [{prop: "competitive", weight: 0.2}],
+        [{prop: "active", weight: 0.333}, {prop: "art", weight: 0.25}],
+        [{prop: "art", weight: 0.25}, {prop: "writing", weight: 0.333}],
+        [{prop: "solo", weight: 0.5}, {prop: "online", weight: 0.5}],
+        [{prop: "offline", weight: 1.0}, {prop: "observe", weight: 0.25}],
+        [{prop: "art", weight: 0.25}, {prop: "persistence", weight: 0.2}],
+        [{prop: "mechanic", weight: 0.5}, {prop: "handuse", weight: 0.333}],
+        [{prop: "gamble", weight: 0.333}, {prop: "active", weight: 0.333}],
+        [{prop: "writing", weight: 0.333}, {prop: "art", weight: 0.25}],
+        [{prop: "collecting", weight: 0.333}, {prop: "handuse", weight: 0.333}],
+        [{prop: "gamble", weight: 0.333}, {prop: "observe", weight: 0.25}],
+        [{prop: "mechanic", weight: 0.5}]]
+
+        for i in 0..27
+            qMatch[i].each do |item|
+                calcItem = item
+                calcItem[:weight] *= respond[i][:value]
+                qPropVec.add( calcItem )
+            end
+        end
+
+        hobbyList = []
+        Hobby.all.each do |hobby|
+            prod = 0.0
+            hobby_abs = 0.0
+            q_abs = 0.0
+            qPropVec.vec.each do |keyword, weight|
+                prod += hobby.tfs[keyword].value * weight
+                hobby_abs += hobby.tfs[keyword].value * hoby.tfs[keyword].value
+                q_abs += weight
+            end
+            hobbyList.push({hobby: hobby, similarity: (prod * prod) / (hobby_abs * q_abs)})
+        end
+
+        hobbyList.sort! { |b, a| a[:similarity] <=> b[:similarity] }
+
+        @article = Article.new(hobby_first: hobbyList[0],hobby_second: hobbyList[1],hobby_third: hobbyList[2], hobby_fourth: hobbyList[3])
+        if @article.save
+            redirect_to @article
+        else
+            redirect_to :back
         end
     end
 
@@ -30,5 +99,21 @@ class ArticlesController < ApplicationController
         @article.destroy
         redirect_to root_path
     end
+end
 
+class PropVec
+    attr_accessor :vec
+    def initialize()
+        @vec = []
+    end
+
+    def add(item)
+        @vec.each do |prop|
+            if item[:prop] == prop[:prop]
+                prop[:weight] += item[:weight]
+                return
+            end
+        end
+        @vec.push(item)
+    end
 end
