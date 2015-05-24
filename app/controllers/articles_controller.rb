@@ -61,7 +61,22 @@ class ArticlesController < ApplicationController
             end
         end
 
-        @article = Article.new(hobby_first: params[:q1],hobby_second: params[:q2],hobby_third: params[:q3], hobby_fourth: params[:q4])
+        hobbyList = []
+        Hobby.all.each do |hobby|
+            prod = 0.0
+            hobby_abs = 0.0
+            q_abs = 0.0
+            qPropVec.vec.each do |keyword, weight|
+                prod += hobby.tfs[keyword].value * weight
+                hobby_abs += hobby.tfs[keyword].value * hoby.tfs[keyword].value
+                q_abs += weight
+            end
+            hobbyList.push({hobby: hobby, similarity: (prod * prod) / (hobby_abs * q_abs)})
+        end
+
+        hobbyList.sort! { |b, a| a[:similarity] <=> b[:similarity] }
+
+        @article = Article.new(hobby_first: hobbyList[0],hobby_second: hobbyList[1],hobby_third: hobbyList[2], hobby_fourth: hobbyList[3])
         if @article.save
             redirect_to @article
         else
