@@ -29,6 +29,12 @@ Rails.application.routes.draw do
     post 'comments/delete'
 
     resources 'articles'
+
+    post 'idfs/createAll'
+    post 'idfs/update'
+    post 'idfs/destroy'
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

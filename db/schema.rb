@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20150523113529) do
   end
 
   create_table "idfs", force: :cascade do |t|
-    t.string   "keyword"
+    t.string   "prop"
     t.decimal  "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150523113529) do
   end
 
   create_table "tfs", force: :cascade do |t|
-    t.string   "keyword"
+    t.string   "prop"
     t.decimal  "value"
     t.integer  "hobby_id"
     t.datetime "created_at", null: false

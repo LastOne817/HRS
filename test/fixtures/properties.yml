@@ -9,3 +9,12 @@ one: {}
 #
 two: {}
 #  column: value
+
+
+sampleproperty:
+  id: 1
+  name: "samplesample"
+
+sampleproperty2:
+  id: 2
+  name: "samplesample2"
