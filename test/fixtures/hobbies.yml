@@ -4,8 +4,29 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+#one: {}
 # column: value
 #
-two: {}
+#two: {}
 #  column: value
+
+hobbyone:
+    id: 1
+    name: "hobbyone"
+
+hobbytwo:
+    id: 2
+    name: "hobbytwo"
+
+hobbythree:
+    id: 3
+    name: "hobbythree"
+
+hobbyfour:
+    id: 4
+    name: "hobbyfour"
+
+hobbyfive:
+    id: 5
+    name: "hobbyfive"
+
