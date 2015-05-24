@@ -4,8 +4,56 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
 #  column: value
+
+tfone:
+   prop: "sample"
+   value: 2.00
+   hobby_id: 1
+
+tftwo:
+   prop: "sample2"
+   value: 1.00
+   hobby_id: 1
+
+tfthree:
+   prop: "sample"
+   value: 2.00
+   hobby_id: 2
+
+tffour:
+   prop: "sample2"
+   value: 2.00
+   hobby_id: 2
+
+tffive:
+   prop: "sample"
+   value: 1.00
+   hobby_id: 3
+
+tfsix:
+  prop: "sample2"
+  value: 1.00
+  hobby_id: 3
+
+tfseven:
+   prop: "sample"
+   value: 1.00
+   hobby_id: 4
+
+tfeight:
+  prop: "sample2"
+  value: 2.00
+  hobby_id: 4
+
+
+tfnine:
+   prop: "sample"
+   value: 1.00
+   hobby_id: 5
+
+tften:
+  prop: "sample2"
+  value: 2.00
+  hobby_id: 5
+
