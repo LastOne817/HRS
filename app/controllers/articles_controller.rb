@@ -19,10 +19,6 @@ class ArticlesController < ApplicationController
             respond.push({id: qid, value: value})
         end
 
-        # TODO : Vector of questionList
-        # TODO : Compare all similarities between hobbies
-        # TODO : Generate
-
         qPropVec = PropVec.new()
         qMatch = [[{prop: "rich", weight: 1.0}],
         [{prop: "team", weight: 0.333}, {prop: "online", weight: 0.5}],
@@ -66,9 +62,9 @@ class ArticlesController < ApplicationController
             prod = 0.0
             hobby_abs = 0.0
             q_abs = 0.0
-            qPropVec.vec.each do |keyword, weight|
-                prod += hobby.tfs[keyword].value * weight
-                hobby_abs += hobby.tfs[keyword].value * hoby.tfs[keyword].value
+            qPropVec.vec.each do |property, weight|
+                prod += hobby.tfs[property].value * Idf.find_by(prop: property).value * weight
+                hobby_abs += (hobby.tfs[property].value * Idf.find_by(prop: property).value) ** 2
                 q_abs += weight
             end
             hobbyList.push({hobby: hobby, similarity: (prod * prod) / (hobby_abs * q_abs)})
