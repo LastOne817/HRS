@@ -34,7 +34,7 @@ class ArticlesController < ApplicationController
         [{prop: "active", weight: 0.333}, {prop: "team", weight: 0.333}],
         [{prop: "ps", weight: 0.333}, {prop: "persistence", weight: 0.2}],
         [{prop: "gamble", weight: 0.333}, {prop: "competitive", weight: 0.2}],
-        [{prop: "mechianic", weight: 0.5}],
+        [{prop: "mechanic", weight: 0.5}],
         [{prop: "competitive", weight: 0.2}, {prop: "persistence", weight: 0.2}],
         [{prop: "observe", weight: 0.25}, {prop: "persistence", weight: 0.2}],
         [{prop: "competitive", weight: 0.2}, {prop: "team", weight: 0.333}],
@@ -66,17 +66,24 @@ class ArticlesController < ApplicationController
             prod = 0.0
             hobby_abs = 0.0
             q_abs = 0.0
-            qPropVec.vec.each do |keyword, weight|
-                prod += hobby.tfs[keyword].value * weight
-                hobby_abs += hobby.tfs[keyword].value * hoby.tfs[keyword].value
-                q_abs += weight
+            qPropVec.vec.each do |keyhash|
+                prod += hobby.tfs.find_by(prop: keyhash[:prop]).value * keyhash[:weight]
+                hobby_abs += hobby.tfs.find_by(prop: keyhash[:prop]).value * hobby.tfs.find_by(prop: keyhash[:prop]).value
+                q_abs += keyhash[:weight]
             end
-            hobbyList.push({hobby: hobby, similarity: (prod * prod) / (hobby_abs * q_abs)})
+            hobbyList.push({hobby: hobby, similarity: ((prod * prod) / (hobby_abs * q_abs)).nan? ? 0 : (prod * prod) / (hobby_abs * q_abs)})
         end
 
         hobbyList.sort! { |b, a| a[:similarity] <=> b[:similarity] }
 
-        @article = Article.new(hobby_first: hobbyList[0],hobby_second: hobbyList[1],hobby_third: hobbyList[2], hobby_fourth: hobbyList[3])
+        puts hobbyList[0][:similarity]
+	puts hobbyList[1][:similarity]
+	puts hobbyList[2][:similarity]
+	puts hobbyList[3][:similarity]
+
+
+
+        @article = Article.new(hobby_first: hobbyList[0][:hobby].id,hobby_second: hobbyList[1][:hobby].id,hobby_third: hobbyList[2][:hobby].id, hobby_fourth: hobbyList[3][:hobby].id)
         if @article.save
             redirect_to @article
         else
