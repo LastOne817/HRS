@@ -106,3 +106,5 @@ observe.keywords.create(name: "view")
 persistence.keywords.create(name: "persist")
 persistence.keywords.create(name: "endure")
 persistence.keywords.create(name: "patience")
+
+Idf.createAll()
