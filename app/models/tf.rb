@@ -30,14 +30,12 @@ class Tf < ActiveRecord::Base
         @text = text #TODO: it should be changed with the file path
         @tf_id = tf_id
 
-        @tf = Tf.find(tf_id)
-        puts "done here"
+        @tf = Tf.find(@tf_id)
         @keyword_count = 0
 
         while true
             @word = /\w+/.match(@text)
             if @word == nil then break end
-
             @text = @word.post_match
             @prop = Property.find_by(name: @tf.prop)
             @keywords = @prop.keywords
