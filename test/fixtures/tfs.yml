@@ -7,53 +7,115 @@
 #  column: value
 
 tfone:
-   prop: "sample"
-   value: 2.00
-   hobby_id: 1
+    id: 1
+    prop: "rich"
+    value: 1.5
+    hobby_id: 1
 
 tftwo:
-   prop: "sample2"
-   value: 1.00
-   hobby_id: 1
+    id: 2
+    prop: "poor"
+    value: 1.5
+    hobby_id: 1
 
 tfthree:
-   prop: "sample"
-   value: 2.00
-   hobby_id: 2
+    id: 3
+    prop: "active"
+    value: 1.5
+    hobby_id: 1
 
 tffour:
-   prop: "sample2"
-   value: 2.00
-   hobby_id: 2
+    id: 4
+    prop: "inactive"
+    value: 1.5
+    hobby_id: 1
 
 tffive:
-   prop: "sample"
-   value: 1.00
-   hobby_id: 3
+    id: 5
+    prop: "ps"
+    value: 1.5
+    hobby_id: 1
 
 tfsix:
-  prop: "sample2"
-  value: 1.00
-  hobby_id: 3
+    id: 6
+    prop: "solo"
+    value: 1.5
+    hobby_id: 1
 
 tfseven:
-   prop: "sample"
-   value: 1.00
-   hobby_id: 4
+    id: 7
+    prop: "team"
+    value: 1.5
+    hobby_id: 1
 
 tfeight:
-  prop: "sample2"
-  value: 2.00
-  hobby_id: 4
-
+    id: 8
+    prop: "online"
+    value: 1.5
+    hobby_id: 1
 
 tfnine:
-   prop: "sample"
-   value: 1.00
-   hobby_id: 5
+    id: 9
+    prop: "offline"
+    value: 1.5
+    hobby_id: 1
 
 tften:
-  prop: "sample2"
-  value: 2.00
-  hobby_id: 5
+    id: 10
+    prop: "handuse"
+    value: 1.5
+    hobby_id: 1
 
+tfeleven:
+    id: 11
+    prop: "art"
+    value: 1.5
+    hobby_id: 1
+
+tftwelve:
+    id: 12
+    prop: "mechanic"
+    value: 1.5
+    hobby_id: 1
+
+tfthirteen:
+    id: 13
+    prop: "collecting"
+    value: 1.5
+    hobby_id: 1
+
+tffourteen:
+    id: 14
+    prop: "gamble"
+    value: 1.5
+    hobby_id: 1
+
+tffifteen:
+    id: 15
+    prop: "writing"
+    value: 1.5
+    hobby_id: 1
+
+tfsixteen:
+    id: 16
+    prop: "competitive"
+    value: 1.5
+    hobby_id: 1
+
+tfseventeen:
+    id: 17
+    prop: "non_competitive"
+    value: 1.5
+    hobby_id: 1
+
+tfeightteen:
+    id: 18
+    prop: "observe"
+    value: 1.5
+    hobby_id: 1
+
+tfnineteen:
+    id: 19
+    prop: "persistence"
+    value: 1.5
+    hobby_id: 1
