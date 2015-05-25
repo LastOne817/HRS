@@ -1,7 +1,7 @@
 class Tf < ActiveRecord::Base
     belongs_to :hobby
 
-    validates :prop, presence: true, uniqueness: true
+    validates :prop, presence: true
     
     def self.create(prop,hobby_id)
         @newTf = Tf.new
@@ -11,6 +11,19 @@ class Tf < ActiveRecord::Base
         @newTf.hobby_id = hobby_id
 
         @newTf.save
+    end
+
+    def self.createAll(hobby_id)
+
+        @props = Property.all
+   
+        @props.each do |prop|
+            @newTf = Tf.new
+            @newTf.prop = prop.name
+            @newTf.value = 0.00
+            @newTf.hobby_id = hobby_id
+            @newTf.save
+        end
     end
 
     def self.update(text,tf_id)
@@ -39,5 +52,4 @@ class Tf < ActiveRecord::Base
         @tf.value = Math.log(1+@keyword_count)
         @tf.save
     end
-
 end
