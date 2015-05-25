@@ -91,7 +91,9 @@ class ArticlesControllerTest < ActionController::TestCase
 
     test '#article_show' do
         session[:user_id]=nil
-        
+        h1 = Hobby.new
+        h1.name = "Hobby4"
+        h1.save
         h2 = Hobby.new
         h2.name = "Hobby5"
         h2.save
@@ -102,11 +104,21 @@ class ArticlesControllerTest < ActionController::TestCase
         h4.name = "Hobby7"
         h4.save
 
+        Tf.createAll(h1.id)
         Tf.createAll(h2.id)
         Tf.createAll(h3.id)
         Tf.createAll(h4.id)
 
-        get :show, {:id => 1}
+        h = Article.new
+        h.hobby_first=h1.id
+        h.hobby_second=h2.id
+        h.hobby_third=h3.id
+        h.hobby_fourth=h4.id
+
+        h.save
+
+        get :show, {:id => h.id}
+         
         assert true
     end
 end
