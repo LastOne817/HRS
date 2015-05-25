@@ -1,7 +1,7 @@
 class Idf < ActiveRecord::Base
     validates :prop, presence: true, uniqueness: true
 
-    def createAll()
+    def self.createAll
         @props = Property.all
 
         @props.each do |prop|
@@ -11,7 +11,7 @@ class Idf < ActiveRecord::Base
     end
 
 
-     def update
+     def self.update
         @idfs = Idf.all
 
         @idfs.each do |idf|
