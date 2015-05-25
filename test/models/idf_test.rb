@@ -37,7 +37,7 @@ class IdfTest < ActiveSupport::TestCase
         
         i = Idf.find_by(prop: "sample")
         
-        assert i.value == 0
+        assert_in_delta i.value, 1.3862943, 0.000001 
 
         tt.destroy
         k.destroy

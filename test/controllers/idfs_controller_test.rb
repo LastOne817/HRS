@@ -11,7 +11,7 @@ class IdfsControllerTest < ActionController::TestCase
         request.env["HTTP_REFERER"] = "/pages/main"
         post :update
         t = Idf.find_by(:prop => "collecting")
-        assert t.value == 0
+        assert_in_delta t.value, 1.3862943, 0.000001 
     end
 
     test '#idf_update_not_contains' do
