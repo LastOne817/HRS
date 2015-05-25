@@ -76,7 +76,11 @@ class ArticlesController < ApplicationController
 
         hobbyList.sort! { |b, a| a[:similarity] <=> b[:similarity] }
 
-        puts hobbyList[0][:hobby].id
+        puts hobbyList[0][:similarity]
+	puts hobbyList[1][:similarity]
+	puts hobbyList[2][:similarity]
+	puts hobbyList[3][:similarity]
+
 
 
         @article = Article.new(hobby_first: hobbyList[0][:hobby].id,hobby_second: hobbyList[1][:hobby].id,hobby_third: hobbyList[2][:hobby].id, hobby_fourth: hobbyList[3][:hobby].id)
