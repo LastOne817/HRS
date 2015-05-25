@@ -73,9 +73,9 @@ class ArticlesController < ApplicationController
         hobbyList.sort! { |b, a| a[:similarity] <=> b[:similarity] }
 
         puts hobbyList[0][:similarity]
-	puts hobbyList[1][:similarity]
-	puts hobbyList[2][:similarity]
-	puts hobbyList[3][:similarity]
+        puts hobbyList[1][:similarity]
+        puts hobbyList[2][:similarity]
+        puts hobbyList[3][:similarity]
 
 
 
