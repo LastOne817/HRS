@@ -10,5 +10,5 @@ Scenario: User submit checklist
 
 Given the checklist page of the site
 When I fill in all questions
-And I press "Magic Happens" button
+And I press "checklist_submit" button
 Then I should see article page

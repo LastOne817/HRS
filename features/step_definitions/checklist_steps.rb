@@ -1,5 +1,5 @@
 Then(/^I should see checklist page/) do
-    assert page.current_page == pages_checklist_path
+    assert page.current_path == pages_checklist_path
 end
 
 Given(/^the checklist page of the site/) do
@@ -12,10 +12,10 @@ end
 
 When(/^I fill in all questions/) do
     for num in 1..28
-        choose("q"+num.to_s)
+        choose("q"+num.to_s, :match => :first)
     end
 end
 
 Then(/^I should see article page/) do
-    assert page.current_page == articles_path
+    assert page.current_path == articles_path
 end
