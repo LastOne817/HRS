@@ -63,21 +63,16 @@ class ArticlesController < ApplicationController
             hobby_abs = 0.0
             q_abs = 0.0
             qPropVec.vec.each do |keyhash|
-                prod += hobby.tfs.find_by(prop: keyhash[:prop]).value * keyhash[:weight]
-                hobby_abs += hobby.tfs.find_by(prop: keyhash[:prop]).value * hobby.tfs.find_by(prop: keyhash[:prop]).value
-                q_abs += keyhash[:weight]
+                if hobby.tfs.find_by(prop: keyhash[:prop]) != nil
+                    prod += hobby.tfs.find_by(prop: keyhash[:prop]).value * keyhash[:weight]
+                    hobby_abs += hobby.tfs.find_by(prop: keyhash[:prop]).value * hobby.tfs.find_by(prop: keyhash[:prop]).value
+                    q_abs += keyhash[:weight]
+                end
             end
             hobbyList.push({hobby: hobby, similarity: ((prod * prod) / (hobby_abs * q_abs)).nan? ? 0 : (prod * prod) / (hobby_abs * q_abs)})
         end
 
         hobbyList.sort! { |b, a| a[:similarity] <=> b[:similarity] }
-
-        puts hobbyList[0][:similarity]
-        puts hobbyList[1][:similarity]
-        puts hobbyList[2][:similarity]
-        puts hobbyList[3][:similarity]
-
-
 
         @article = Article.new(hobby_first: hobbyList[0][:hobby].id,hobby_second: hobbyList[1][:hobby].id,hobby_third: hobbyList[2][:hobby].id, hobby_fourth: hobbyList[3][:hobby].id)
         if @article.save
