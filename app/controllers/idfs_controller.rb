@@ -26,7 +26,7 @@ class IdfsController < ApplicationController
                 max = max + 1
    
                 h = hobby.tfs.find_by(prop: prop)
-                if h !=nil and h.value != 1
+                if h !=nil and h.value != 0
                     contain = contain + 1
                 end
             end
