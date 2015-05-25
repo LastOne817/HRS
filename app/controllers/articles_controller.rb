@@ -19,10 +19,6 @@ class ArticlesController < ApplicationController
             respond.push({id: qid, value: value})
         end
 
-        # TODO : Vector of questionList
-        # TODO : Compare all similarities between hobbies
-        # TODO : Generate
-
         qPropVec = PropVec.new()
         qMatch = [[{prop: "rich", weight: 1.0}],
         [{prop: "team", weight: 0.333}, {prop: "online", weight: 0.5}],
