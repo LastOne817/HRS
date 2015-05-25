@@ -13,20 +13,3 @@
 hobbyone:
     id: 1
     name: "hobbyone"
-
-hobbytwo:
-    id: 2
-    name: "hobbytwo"
-
-hobbythree:
-    id: 3
-    name: "hobbythree"
-
-hobbyfour:
-    id: 4
-    name: "hobbyfour"
-
-hobbyfive:
-    id: 5
-    name: "hobbyfive"
-
