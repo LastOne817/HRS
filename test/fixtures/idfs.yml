@@ -99,3 +99,7 @@ idfnineteen:
     prop: "persistence"
     value: 1.5
 
+idftwenty:
+    id: 20
+    prop: "nonexsistence"
+    value: 1.5

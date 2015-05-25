@@ -11,9 +11,15 @@ class IdfsControllerTest < ActionController::TestCase
         request.env["HTTP_REFERER"] = "/pages/main"
         post :update
         t = Idf.find_by(:prop => "collecting")
-        assert t.value ==0
+        assert t.value == 0
     end
 
+    test '#idf_update_not_contains' do
+        request.env["HTTP_REFERER"] = "/pages/main"
+        post :update
+        t = Idf.find_by(:prop => "nonexsistence")
+        assert t.value == 0
+    end
 
     test '#idf_destroy' do
         request.env["HTTP_REFERER"] = "/pages/main"
