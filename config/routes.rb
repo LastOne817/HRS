@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     post 'comments/delete'
 
     resources 'articles'
+    resources 'hobbies'
 
     post 'idfs/createAll'
     post 'idfs/update'
