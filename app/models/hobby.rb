@@ -3,22 +3,17 @@ class Hobby < ActiveRecord::Base
 
     validates :name, presence: true
 
-    def self.create(name,text)
-        @hobby = Hobby.new(name: name)
-        @hobby.text = text
-        @hobby.save
-        @props = Property.all
+    def self.create(arg)
+        hobby = Hobby.new(name: arg[:name], content: arg[:content])
+        hobby.save
+        
+        Tf.createAll(hobby.id)
 
-        @props.each do |prop|
-            Tf.create(prop,@hobby.id)
-        end
-
-        @tfs = hobby.tfs
-
-        @tfs.each do |tf|
-            Tf.update(@hobby.text,tf.id)
+        hobby.tfs.each do |tf|
+            Tf.update(hobby.content, tf.id)
         end
 
         Idf.update
+        hobby
     end
 end
