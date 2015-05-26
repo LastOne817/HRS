@@ -7,46 +7,75 @@
         <div class="col-lg-3">
           <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
           <h2> <%= Hobby.find(@article.hobby_first).name %> </h2>
-          <p> Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description. </p>
+          <h3> Recommend Point : <%= (@article.similarity_first * 100).to_i %>% </h3>
+          <p>
+                    <% if Hobby.find(@article.hobby_first).content.length > 20 %>
+                         <%= Hobby.find(@article.hobby_first).content.byteslice(0,20) %>...(continue)
+                    <% else %>
+                         <%= Hobby.find(@article.hobby_first).content %>
+                    <% end %>
+          </p>
+
           <p> 
           	<a class="btn btn-primary" href="#" role="button">like</a>
 
           	<a class="btn btn-warning" href="#" role="button">dislike</a>
           </p>
-          <p><a class="btn btn-default" href="#" role="button">Go to wiki &raquo;</a></p>
+          <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_first%>" role="button">Go to wiki &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-3">
           <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
           <h2> <%= Hobby.find(@article.hobby_second).name %> </h2>
-          <p> Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description. </p>
+          <h3> Recommend Point : <%= (@article.similarity_second * 100).to_i %>% </h3>
+          <p>
+                    <% if Hobby.find(@article.hobby_second).content.length > 20 %>
+                         <%= Hobby.find(@article.hobby_second).content.byteslice(0,20) %>...(continue)
+                    <% else %>
+                         <%= Hobby.find(@article.hobby_second).content %>
+                    <% end %>
+          </p>
           <p>
 			<a class="btn btn-primary" href="#" role="button">like</a>
 
           	<a class="btn btn-warning" href="#" role="button">dislike</a>
           </p>
-          <p><a class="btn btn-default" href="#" role="button">Go to wiki &raquo;</a></p>
+          <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_second%>" role="button">Go to wiki &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-3">
           <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
           <h2> <%= Hobby.find(@article.hobby_third).name %> </h2>
-          <p> Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description. </p>
+          <h3> Recommend Point : <%= (@article.similarity_third * 100).to_i %>% </h3>
+          <p>
+                    <% if Hobby.find(@article.hobby_third).content.length > 20 %>
+                         <%= Hobby.find(@article.hobby_third).content.byteslice(0,20) %>...(continue)
+                    <% else %>
+                         <%= Hobby.find(@article.hobby_third).content %>
+                    <% end %>
+          </p>
           <p>
 			<a class="btn btn-primary" href="#" role="button">like</a>
 
           	<a class="btn btn-warning" href="#" role="button">dislike</a>
           </p>
-          <p><a class="btn btn-default" href="#" role="button">Go to wiki &raquo;</a></p>
+          <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_third%>" role="button">Go to wiki &raquo;</a></p>
         </div>
         <div class="col-lg-3">
           <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
           <h2> <%= Hobby.find(@article.hobby_fourth).name %> </h2>
-          <p> Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description.Simple description. </p>
+          <h3> Recommend Point : <%= (@article.similarity_fourth * 100).to_i %>% </h3>
+          <p>
+                    <% if Hobby.find(@article.hobby_fourth).content.length > 20 %>
+                         <%= Hobby.find(@article.hobby_fourth).content.byteslice(0,20) %>...(continue)
+                    <% else %>
+                         <%= Hobby.find(@article.hobby_fourth).content %>
+                    <% end %>
+          </p>
           <p>
 			<a class="btn btn-primary" href="#" role="button">like</a>
 
           	<a class="btn btn-warning" href="#" role="button">dislike</a>
           </p>
-          <p><a class="btn btn-default" href="#" role="button">Go to wiki &raquo;</a></p>
+          <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_fourth%>" role="button">Go to wiki &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
     </div> 

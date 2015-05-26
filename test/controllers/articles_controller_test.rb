@@ -98,15 +98,19 @@ class ArticlesControllerTest < ActionController::TestCase
         session[:user_id]=nil
         h1 = Hobby.new
         h1.name = "Hobby4"
+        h1.content ="hobby4"
         h1.save
         h2 = Hobby.new
         h2.name = "Hobby5"
+        h2.content = "hobby5"
         h2.save
         h3 = Hobby.new
         h3.name = "Hobby6"
+        h3.content = "hobby6"
         h3.save
         h4 = Hobby.new
         h4.name = "Hobby7"
+        h4.content = "hobby7"
         h4.save
 
         Tf.createAll(h1.id)
@@ -119,6 +123,11 @@ class ArticlesControllerTest < ActionController::TestCase
         h.hobby_second=h2.id
         h.hobby_third=h3.id
         h.hobby_fourth=h4.id
+        h.similarity_first = 0.9
+        h.similarity_second = 0.7
+        h.similarity_third = 0.5
+        h.similarity_fourth = 0.3
+
 
         h.save
 

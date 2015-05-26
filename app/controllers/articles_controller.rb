@@ -74,7 +74,10 @@ class ArticlesController < ApplicationController
 
         hobbyList.sort! { |b, a| a[:similarity] <=> b[:similarity] }
 
-        @article = Article.new(hobby_first: hobbyList[0][:hobby].id,hobby_second: hobbyList[1][:hobby].id,hobby_third: hobbyList[2][:hobby].id, hobby_fourth: hobbyList[3][:hobby].id)
+        @article = Article.new(hobby_first: hobbyList[0][:hobby].id,hobby_second: hobbyList[1][:hobby].id,
+                               hobby_third: hobbyList[2][:hobby].id, hobby_fourth: hobbyList[3][:hobby].id,
+                               similarity_first: hobbyList[0][:similarity], similarity_second: hobbyList[1][:similarity],
+                               similarity_third: hobbyList[2][:similarity], similarity_fourth: hobbyList[3][:similarity])
         if @article.save
             redirect_to @article
         else
