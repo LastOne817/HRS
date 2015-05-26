@@ -1,0 +1,48 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+
+        <div class="row">
+
+                <!-- Title -->
+                <h1><%= @hobby.name %></h1>
+
+                <hr>
+
+                <!-- Date/Time -->
+                <p><span class="glyphicon glyphicon-time"></span> Posted on <%= @hobby.updated_at %></p>
+
+                <hr>
+
+                <!-- Preview Image -->
+                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+
+                <hr>
+
+                <!-- Post Content -->
+                <p> <%= @hobby.text %> </p>
+
+                <hr>
+
+        </div>
+        <div class="row padding-cls">
+            <div class="col-md-10">
+                <a class="btn btn-primary" href="/hobbies">Back <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+            <div class="col-md-2">
+                <%= button_to "Delete Hobby", { action: "destroy", id: @hobby.id }, method: :delete, class: 'btn btn-danger' %>
+            </div>
+       </div>
+</div>
+
+
+<%= render 'shared/footer' %>
+
+<style>
+
+.padding-cls{
+    padding-bottom: 20px;
+
+}
+
+</style>
