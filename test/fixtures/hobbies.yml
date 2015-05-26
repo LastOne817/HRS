@@ -13,16 +13,19 @@
 hobbyone:
     id: 1
     name: "hobbyone"
+    content: "asdf"
 
 hobbytwo:
     id: 2
     name: "hobbytwo"
+    content: "asdf"
 
 hobbythree:
     id: 3
     name: "hobbythree"
+    content: "asdf"
 
 hobbyfour:
     id: 4
     name: "hobbyfour"
-
+    content: "asdf"

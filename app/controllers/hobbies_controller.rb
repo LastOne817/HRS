@@ -18,49 +18,46 @@ class HobbiesController < ApplicationController
 
     def create
         hobby = Hobby.new(name: params[:hobby][:name])
-        hobby.text = params[:hobby][:text]
+        hobby.content = params[:hobby][:content]
         if hobby.save
-            props = Property.all
             
-            props.each do |prop|
-                Tf.create(prop,hobby.id)
-            end
-
+            Tf.createAll(hobby.id)
+            
             tfs = hobby.tfs
         
             tfs.each do |tf|
-                Tf.update(hobby.text,tf.id)
+                Tf.update(hobby.content,tf.id)
             end
 
             Idf.update
 
             redirect_to hobby
-        else
-            render 'new'
         end
     end
 
     def update
         hobby = Hobby.find(params[:id])
         hobby.name = params[:hobby][:name]
-        hobby.text = params[:hobby][:text]
+        hobby.content = params[:hobby][:content]
         if hobby.save
             tfs = hobby.tfs
-            text = hobby.text
+            content = hobby.content
 
             tfs.each do |tf|
-                Tf.update(text,tf.id)
+                Tf.update(content,tf.id)
             end
             Idf.update
 
             redirect_to hobby
-       else
-            render 'new'
        end
     end
 
     def destroy
         hobby = Hobby.find(params[:id])
-        hobby.destroy
+        if hobby.destroy
+            redirect_to hobbies_path
+        else
+            redirect_to :back
+        end
     end
 end
