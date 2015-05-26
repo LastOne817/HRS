@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20150523113529) do
 
   create_table "hobbies", force: :cascade do |t|
     t.string   "name"
+    t.string   "text"
+    t.binary   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
