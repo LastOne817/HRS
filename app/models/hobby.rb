@@ -9,12 +9,11 @@ class Hobby < ActiveRecord::Base
         
         Tf.createAll(hobby.id)
 
-        tfs = hobby.tfs
-
-        tfs.each do |tf|
+        hobby.tfs.each do |tf|
             Tf.update(hobby.content, tf.id)
         end
 
         Idf.update
+        hobby
     end
 end
