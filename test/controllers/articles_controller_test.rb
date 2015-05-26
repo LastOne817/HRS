@@ -81,6 +81,11 @@ class ArticlesControllerTest < ActionController::TestCase
         assert_redirected_to "/articles/2"
     end
 
+    test '#article_destroy' do
+        delete :destroy, {:id => 1}
+        assert_redirected_to root_path
+    end
+
     test '#article_create_failure' do
         request.env["HTTP_REFERER"] = "/pages/checklist"
         post :create, {'q1' => 1, 'q2' => 2, 'q3' => 3 }

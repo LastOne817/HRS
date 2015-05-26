@@ -18,9 +18,6 @@ class CommentsController < ApplicationController
         if @comment.destroy
             flash[:alert]="Comment is deleted Successfully"
             redirect_to :back
-        else
-            flash[:alert]="Comment cannot be destroyed"
-            redirect_to :back
         end
     end
 
