@@ -3,6 +3,7 @@ class CreateHobbies < ActiveRecord::Migration
         create_table :hobbies do |t|
             t.string :name
             t.string :content
+            t.binary :image
 
             t.timestamps null: false
         end
