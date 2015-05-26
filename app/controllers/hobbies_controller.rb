@@ -18,7 +18,7 @@ class HobbiesController < ApplicationController
 
     def create
         hobby = Hobby.new(name: params[:hobby][:name])
-        hobby.text = params[:hobby][:text]
+        hobby.content = params[:hobby][:content]
         if hobby.save
             props = Property.all
             
@@ -29,7 +29,7 @@ class HobbiesController < ApplicationController
             tfs = hobby.tfs
         
             tfs.each do |tf|
-                Tf.update(hobby.text,tf.id)
+                Tf.update(hobby.content,tf.id)
             end
 
             Idf.update
@@ -43,13 +43,13 @@ class HobbiesController < ApplicationController
     def update
         hobby = Hobby.find(params[:id])
         hobby.name = params[:hobby][:name]
-        hobby.text = params[:hobby][:text]
+        hobby.content = params[:hobby][:content]
         if hobby.save
             tfs = hobby.tfs
-            text = hobby.text
+            content = hobby.content
 
             tfs.each do |tf|
-                Tf.update(text,tf.id)
+                Tf.update(content,tf.id)
             end
             Idf.update
 
@@ -61,6 +61,10 @@ class HobbiesController < ApplicationController
 
     def destroy
         hobby = Hobby.find(params[:id])
-        hobby.destroy
+        if hobby.destroy
+            redirect_to hobbies_path
+        else
+            redirect_to :back
+        end
     end
 end
