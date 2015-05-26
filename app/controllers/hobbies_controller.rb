@@ -1,33 +1,66 @@
 class HobbiesController < ApplicationController
+
+    def new
+        @hobby = Hobby.new
+    end
+
+    def index
+        @hobbies = Hobby.last(20)
+    end
+
+    def show
+        @hobby = Hobby.find(params[:id])
+    end
+
+    def edit
+        @hobby = Hobby.find(params[:id])
+    end
+
     def create
-        hobby = Hobby.new(name: params[:name])
-    
-        hobby.save
+        hobby = Hobby.new(name: params[:hobby][:name])
+        hobby.text = params[:hobby][:text]
+        if hobby.save
+            props = Property.all
+            
+            props.each do |prop|
+                Tf.create(prop,hobby.id)
+            end
 
-        props = Property.all
+            tfs = hobby.tfs
+        
+            tfs.each do |tf|
+                Tf.update(hobby.text,tf.id)
+            end
 
-        props.each do |prop|
-            Tf.create(prop,hobby.id)
+            Idf.update
+
+            redirect_to hobby
+        else
+            render 'new'
         end
-
-        Idf.update
     end
 
     def update
-        hobby = Hobby.find(name: params[:name])
-        tfs = hobby.tfs
-        text = params[:text]   # its form can be changed
+        hobby = Hobby.find(params[:id])
+        hobby.name = params[:hobby][:name]
+        hobby.text = params[:hobby][:text]
+        if hobby.save
+            tfs = hobby.tfs
+            text = hobby.text
 
-        tfs.each do |tf|
-            Tf.update(text,tf.id)
-        end
+            tfs.each do |tf|
+                Tf.update(text,tf.id)
+            end
+            Idf.update
 
-        Idf.update
-
+            redirect_to hobby
+       else
+            render 'new'
+       end
     end
 
-    def delete
-        hobby = Hobby.find(name: params[:name])
+    def destroy
+        hobby = Hobby.find(params[:id])
         hobby.destroy
     end
 end
