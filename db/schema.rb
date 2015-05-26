@@ -18,8 +18,12 @@ ActiveRecord::Schema.define(version: 20150523113529) do
     t.integer  "hobby_second"
     t.integer  "hobby_third"
     t.integer  "hobby_fourth"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.decimal  "similarity_first"
+    t.decimal  "similarity_second"
+    t.decimal  "similarity_third"
+    t.decimal  "similarity_fourth"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "comments", force: :cascade do |t|
