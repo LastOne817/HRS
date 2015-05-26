@@ -20,12 +20,9 @@ class HobbiesController < ApplicationController
         hobby = Hobby.new(name: params[:hobby][:name])
         hobby.content = params[:hobby][:content]
         if hobby.save
-            props = Property.all
             
-            props.each do |prop|
-                Tf.create(prop,hobby.id)
-            end
-
+            Tf.createAll(hobby.id)
+            
             tfs = hobby.tfs
         
             tfs.each do |tf|
@@ -35,8 +32,6 @@ class HobbiesController < ApplicationController
             Idf.update
 
             redirect_to hobby
-        else
-            render 'new'
         end
     end
 
@@ -54,8 +49,6 @@ class HobbiesController < ApplicationController
             Idf.update
 
             redirect_to hobby
-       else
-            render 'new'
        end
     end
 
