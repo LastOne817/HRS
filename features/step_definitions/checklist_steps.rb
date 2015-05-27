@@ -17,5 +17,6 @@ When(/^I fill in all questions/) do
 end
 
 Then(/^I should see article page/) do
-    assert page.current_path == articles_path + '/2'
+    article_cnt = Article.count
+    assert page.current_path == articles_path + '/' + article_cnt.to_s
 end
