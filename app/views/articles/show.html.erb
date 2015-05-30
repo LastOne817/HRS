@@ -5,7 +5,7 @@
 
       <div class="row">
         <div class="col-lg-3">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <img class="img-circle" src="<%= Hobby.find(@article.hobby_first).image %>" alt="Generic placeholder image" width="140" height="140">
           <h2> <%= Hobby.find(@article.hobby_first).name %> </h2>
           <h3> Recommend Point : <%= (@article.similarity_first * 100).to_i %>% </h3>
           <p>
@@ -24,7 +24,7 @@
           <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_first%>" role="button">Go to wiki &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-3">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle" src="<%= Hobby.find(@article.hobby_second).image %>" alt="Generic placeholder image" width="140" height="140">
           <h2> <%= Hobby.find(@article.hobby_second).name %> </h2>
           <h3> Recommend Point : <%= (@article.similarity_second * 100).to_i %>% </h3>
           <p>
@@ -42,7 +42,7 @@
           <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_second%>" role="button">Go to wiki &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-3">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle" src="<%= Hobby.find(@article.hobby_third).image %>" alt="Generic placeholder image" width="140" height="140">
           <h2> <%= Hobby.find(@article.hobby_third).name %> </h2>
           <h3> Recommend Point : <%= (@article.similarity_third * 100).to_i %>% </h3>
           <p>
@@ -60,7 +60,7 @@
           <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_third%>" role="button">Go to wiki &raquo;</a></p>
         </div>
         <div class="col-lg-3">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle" src="<%= Hobby.find(@article.hobby_fourth).image %>" alt="Generic placeholder image" width="140" height="140">
           <h2> <%= Hobby.find(@article.hobby_fourth).name %> </h2>
           <h3> Recommend Point : <%= (@article.similarity_fourth * 100).to_i %>% </h3>
           <p>
