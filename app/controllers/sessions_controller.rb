@@ -9,6 +9,9 @@ class SessionsController < ApplicationController
                 if user.save
                     session[:user_id] = user.id
                     redirect_to root_url
+                    like = Like.new
+                    like.user_id = user.id
+                    like.save
                 else
                     flash[:alert]="Failed to Signin"
                     redirect_to '/pages/signup'
