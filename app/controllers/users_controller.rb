@@ -32,6 +32,10 @@ class UsersController < ApplicationController
                 @user.uid = @user.id
                 @user.image = "http://cdn.ddanzi.com/201310-images/1531864.jpg"
                 @user.save
+                @like = Like.new
+                @like.user_id = @user.id
+                @like.save                
+                
                 flash[:alert] = "Signed in successfully"
                 session[:user_id] = @user.id
                 redirect_to root_path
@@ -93,4 +97,5 @@ class UsersController < ApplicationController
         @user.destroy
         redirect_to root_path
     end
+
 end
