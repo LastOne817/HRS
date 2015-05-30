@@ -54,10 +54,10 @@ class HobbiesController < ApplicationController
 
     def destroy
         hobby = Hobby.find(params[:id])
-        if hobby.destroy
-            redirect_to hobbies_path
-        else
-            redirect_to :back
-        end
+        hobby.destroy
+        redirect_to hobbies_path
+        #else
+        #    redirect_to :back
+        #end
     end
 end
