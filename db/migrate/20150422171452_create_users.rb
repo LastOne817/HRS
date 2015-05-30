@@ -8,8 +8,9 @@ class CreateUsers < ActiveRecord::Migration
             t.string :email
             t.binary :image
             t.string :token
-	    t.string :salt 
+    	    t.string :salt 
             t.datetime :expires_at
+            t.text :checklist
 
             t.timestamps null: false
         end

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
     validates :password, presence: true     # , length: { :in => 5..20 }
     validates :email, uniqueness: true
+    serialize :checklist
 
     has_one :like
 
