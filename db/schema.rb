@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523113529) do
+ActiveRecord::Schema.define(version: 20150530073829) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "hobby_first"
@@ -60,6 +60,24 @@ ActiveRecord::Schema.define(version: 20150523113529) do
   end
 
   add_index "keywords", ["property_id"], name: "index_keywords_on_property_id"
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id"
+
+  create_table "pairs", force: :cascade do |t|
+    t.integer  "like_id"
+    t.integer  "value"
+    t.integer  "hobby_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "pairs", ["like_id"], name: "index_pairs_on_like_id"
 
   create_table "properties", force: :cascade do |t|
     t.string   "name"
