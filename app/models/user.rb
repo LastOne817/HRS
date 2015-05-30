@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
     validates :email, uniqueness: true
 
     has_one :like
-    has_one :dislike
 
     def self.omniauth(auth)
         @user = User.new
