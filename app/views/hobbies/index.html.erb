@@ -1,38 +1,38 @@
 <%= render 'shared/header' %>
 
 <div class="row">
-            <div class="col-md-10">
-                <h1 class="page-header">Hobby List 
-                     <small>Last 20</small> </h1>
-            </div>
-            <div class="col-md-2 create-btn">
-                <%= button_to 'New article', new_hobby_path, class: 'btn btn-warning', method: :get %>
-            </div>
+    <div class="col-md-10">
+        <h1 class="page-header">Hobby List 
+            <small>Last 20</small> </h1>
+    </div>
+    <div class="col-md-2 create-btn">
+        <%= button_to 'New article', new_hobby_path, class: 'btn btn-warning', method: :get %>
+    </div>
 </div>
 
-      <% @hobbies.each do |hobby| %>
-         
-         <div class="row">
-            <div class="col-md-2"> </div>
-            <div class="col-md-4">
-                <a href="/hobbies/<%=hobby.id%>">
-                    <img class="img-responsive" src="http://placehold.it/250x150" alt="">
-                </a>
-            </div>
-            <div class="col-md-6">
-                <h3><%= hobby.name %></h3>
-                <p>
-                    <% if hobby.content.length > 20 %>
-                         <%= hobby.content.byteslice(0,20) %>...(continue)
-                    <% else %>
-                         <%= hobby.content %> 
-                    <% end %>
-               </p>
-                <a class="btn btn-primary" href="/hobbies/<%=hobby.id%>">Show <span class="glyphicon glyphicon-chevron-right"></span></a>
-                <a class="btn btn-primary" href="/hobbies/<%=hobby.id%>/edit">Edit <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <hr>
+<% @hobbies.each do |hobby| %>
+
+    <div class="row">
+    <div class="col-md-2"> </div>
+    <div class="col-md-4">
+        <a href="/hobbies/<%=hobby.id%>">
+            <img class="img-responsive" src="<%= hobby.image %>" alt="" style="height:150px">
+        </a>
+    </div>
+    <div class="col-md-6">
+        <h3><%= hobby.name %></h3>
+        <p>
+        <% if hobby.content.length > 20 %>
+            <%= hobby.content.byteslice(0,20) %>...(continue)
+    <% else %>
+            <%= hobby.content %> 
+    <% end %>
+        </p>
+        <a class="btn btn-primary" href="/hobbies/<%=hobby.id%>">Show <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="btn btn-primary" href="/hobbies/<%=hobby.id%>/edit">Edit <span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+</div>
+<hr>
       <% end %>
 </div>
 
@@ -42,7 +42,7 @@
 <style>
 
 .create-btn{
-padding-top: 40px;
+    padding-top: 40px;
 }
 
 </style>
