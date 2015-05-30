@@ -17,9 +17,9 @@
           </p>
 
           <p> 
-          	<a class="btn btn-primary" href="#" role="button">like</a>
+          	<button class="btn btn-primary" id="oneLike" role="button">like</button>
 
-          	<a class="btn btn-warning" href="#" role="button">dislike</a>
+          	<button class="btn btn-warning" id="oneDislike" role="button">dislike</button>
           </p>
           <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_first%>" role="button">Go to wiki &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
@@ -35,9 +35,9 @@
                     <% end %>
           </p>
           <p>
-			<a class="btn btn-primary" href="#" role="button">like</a>
+		<button class="btn btn-primary" id="twoLike" role="button">like</button>
 
-          	<a class="btn btn-warning" href="#" role="button">dislike</a>
+          	<button class="btn btn-warning" id="twoDislike" role="button">dislike</button>
           </p>
           <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_second%>" role="button">Go to wiki &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
@@ -53,9 +53,9 @@
                     <% end %>
           </p>
           <p>
-			<a class="btn btn-primary" href="#" role="button">like</a>
+		<button class="btn btn-primary" id="threeLike" role="button">like</button>
 
-          	<a class="btn btn-warning" href="#" role="button">dislike</a>
+          	<button class="btn btn-warning" id="threeDislike" role="button">dislike</button>
           </p>
           <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_third%>" role="button">Go to wiki &raquo;</a></p>
         </div>
@@ -71,17 +71,21 @@
                     <% end %>
           </p>
           <p>
-			<a class="btn btn-primary" href="#" role="button">like</a>
+		<button class="btn btn-primary" id="fourLike" role="button">like</button>
 
-          	<a class="btn btn-warning" href="#" role="button">dislike</a>
+          	<button class="btn btn-warning" id="fourDislike" role="button">dislike</button>
           </p>
           <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_fourth%>" role="button">Go to wiki &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
     </div> 
-
-
-
+<h3> 
+    <div class="row aligning">
+    <br>
+         <div id="Message"></div>
+    <br><br><br>
+    </div>
+</h3>
 
     <div class="container">
             <div class="row">
@@ -214,4 +218,44 @@
 .login-msg{
 	text-align: center;
 }
+
+.aligning{
+    text-align: center;
+}
 </style>
+
+<script>
+
+$("#oneLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_first).id %>); });
+$("#oneDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_first).id %>); });
+$("#twoLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_second).id %>); });
+$("#twoDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_second).id %>); });
+$("#threeLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_third).id %>); });
+$("#threeDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_third).id %>); });
+$("#fourLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_fourth).id %>); });
+$("#fourDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_fourth).id %>); });
+
+function registerAjax(v,i){
+	$.ajax({
+		type:"POST",
+		url:"/pages/setlike",
+		dataType:"JSON",
+		data: {
+			"value": v,
+			"hobby_id": i
+			},
+		success: function(result){
+                        if(result["error_code"]==0 && v == 0)
+                              $('#Message').text("hobby disliked successfully");
+                        else if(result["error_code"]==0 && v == 1)
+                              $('#Message').text("hobby liked successfully");
+                        else
+                              $('#Message').text("hobby already liked or disliked");
+                                                                          
+			},
+		error: function(data){
+			}		
+	});
+}
+
+</script>

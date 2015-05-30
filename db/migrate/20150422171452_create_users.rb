@@ -13,5 +13,8 @@ class CreateUsers < ActiveRecord::Migration
 
             t.timestamps null: false
         end
+       add_foreign_key :users, :likes
+       add_foreign_key :users, :dislikes
+
     end
 end

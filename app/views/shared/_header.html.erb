@@ -28,7 +28,7 @@
 
       <li class="right"><h3><%= link_to "Log out", controller: "users", action: "logout"  %></h3></li>
       <li class="right"><h3><%= link_to "Edit Profile", controller: "pages", action: "profile" %></h3></li>
-      <li class="right" id="LoginMessage"><h4> Hello! <%= session[:user_email] %> </h4></li>
+      <li class="right"><h3><%= link_to "Liked/Disliked Hobbies", controller: "pages", action: "hobbylist" %></h3></li>
     </ul>
   </div>
 </div>

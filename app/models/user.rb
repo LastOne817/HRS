@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
     validates :password, presence: true     # , length: { :in => 5..20 }
     validates :email, uniqueness: true
+
+    has_one :like
+
     def self.omniauth(auth)
         @user = User.new
         @user.provider = auth.provider

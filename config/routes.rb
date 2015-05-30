@@ -16,6 +16,13 @@ Rails.application.routes.draw do
     get 'pages/profile'
     get 'pages/wiki'
     post 'pages/result'
+    get 'pages/hobbylist'
+    post 'pages/showliked'
+    get 'pages/showliked'
+    post 'pages/showdisliked'
+    get 'pages/showdisliked'
+    post 'pages/deletefromlist'
+    post 'pages/setlike'
 
     post 'users/signup', to: 'users#signup'
     post 'users/login', to: 'users#login'

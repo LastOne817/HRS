@@ -61,6 +61,57 @@ class PagesController < ApplicationController
         @user = User.find(session[:user_id])
     end
 
+    def hobbylist
+    end
+    
+    def showliked
+        @user = User.find(session[:user_id])
+        @pairs = @user.like.pairs.all
+    end
+
+    def showdisliked
+        @user = User.find(session[:user_id])
+        @pairs = @user.like.pairs.all
+    end
+
+    def deletefromlist
+ 
+        @user = User.find(session[:user_id])
+        @pairs = @user.like.pairs.all
+
+        @pair = @pairs.find_by(hobby_id: params[:id])
+        @pair.destroy
+
+        flash[:alert] = "Hobby is deleted from the list successfully"
+
+        redirect_to :back
+    end
+
+    def setlike
+        @value = params[:value]
+	@hobby_id = params[:hobby_id]
+
+	@user = User.find(session[:user_id])
+        
+        if @user.like.pairs.find_by(hobby_id: @hobby_id) != nil
+            render :json => {"error_code": 1}
+        else
+
+            @pair = Pair.new
+            @pair.value = @value
+            @pair.hobby_id = @hobby_id
+            @pair.like_id = @user.like.id
+            @pair.save
+#        if @pair.value == 1
+#            flash[:alert] = "Hobby liked successfully"
+#        else
+#            flash[:alert] = "Hobby disliked successfully"
+#        end
+
+            render :json => { "error_code": 0}
+       end
+    end
+
     private
     def makeAlert
         flash.now[:alert] = flash[:alert]
