@@ -20,11 +20,11 @@ class HobbiesController < ApplicationController
         hobby = Hobby.new(name: params[:hobby][:name])
         hobby.content = params[:hobby][:content]
         if hobby.save
-            
+
             Tf.createAll(hobby.id)
-            
+
             tfs = hobby.tfs
-        
+
             tfs.each do |tf|
                 Tf.update(hobby.content,tf.id)
             end
@@ -49,7 +49,7 @@ class HobbiesController < ApplicationController
             Idf.update
 
             redirect_to hobby
-       end
+        end
     end
 
     def destroy
