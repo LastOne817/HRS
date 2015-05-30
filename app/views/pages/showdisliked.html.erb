@@ -1,0 +1,44 @@
+<%= render 'shared/header' %>
+
+<div class="row">
+            <div class="col-md-10">
+                <h1 class="page-header">Disliked Hobby List
+                     <small>Last 20</small> </h1>
+            </div>
+</div>
+      <% @pairs.each do |pair| %>
+         <% if pair.value == 0 %>
+         <div class="row">
+            <div class="col-md-2"> </div>
+            <div class="col-md-4">
+                <a href="/hobbies/<%=Hobby.find(pair.hobby_id).id%>">
+                    <img class="img-responsive" src="http://placehold.it/250x150" alt="">
+                </a>
+            </div>
+            <div class="col-md-6">
+                <h3><%= Hobby.find(pair.hobby_id).name %></h3>
+                <p>
+                    <% if Hobby.find(pair.hobby_id).content.length > 20 %>
+                         <%= Hobby.find(pair.hobby_id).content.byteslice(0,20) %>...(continue)
+                    <% else %>
+                         <%= Hobby.find(pair.hobby_id).content %>
+                    <% end %>
+               </p>
+                <a class="btn btn-primary" href="/hobbies/<%=Hobby.find(pair.hobby_id).id%>">Show <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <%= button_to "Delete from list", { action: "deletefromlist", id: Hobby.find(pair.hobby_id).id }, method: :post, class: 'btn btn-danger delete-btn' %>
+            </div>
+        </div>
+        <hr>
+        <% end %>
+      <% end %>
+
+<%= render 'shared/footer' %>
+
+
+<style>
+
+.delete-btn{
+margin-top: 40px;
+}
+
+</style>
