@@ -120,17 +120,19 @@ class PagesController < ApplicationController
                 proplist.each do |keyhash|
                     if keyhash[:prop] == prop[0][:prop]
                         if @value == 0
-                            keyhash[:weight] *= 0.9
+                            keyhash[:weight] *= ( 0.9 / User.count )
                         else
-                            keyhash[:weight] *= 1.1
+                            keyhash[:weight] = 1.0 - (1.0 - keyhash[:weight]) * ( 0.9 / User.count )
                         end
                     end
                 end
             end
 
+            
+
             weightList.save
 
-            render :json => { "error_code": 0}
+            render :json => { "error_code": 0 }
         end
     end
 
