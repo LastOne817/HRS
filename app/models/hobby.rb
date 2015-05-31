@@ -16,4 +16,10 @@ class Hobby < ActiveRecord::Base
         Idf.update
         hobby
     end
+
+    def self.daily_picks
+        Rails.cache.fetch('hobby_daily_picks', expires_in: 1.minute) do
+            self.all.shuffle.first
+        end
+    end
 end
