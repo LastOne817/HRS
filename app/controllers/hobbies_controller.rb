@@ -55,9 +55,7 @@ class HobbiesController < ApplicationController
         hobby.name = params[:hobby][:name]
         hobby.content = params[:hobby][:content]
 
-        uploaded_io = params[:hobby][:photo]
-
-        puts uploaded_io       
+        uploaded_io = params[:hobby][:photo]     
  
         if hobby.save
 
@@ -67,7 +65,6 @@ class HobbiesController < ApplicationController
                 end
                 hobby.image = "/hobbyimage/" + hobby.id.to_s
                 hobby.save
-                puts "FUCK"
             end
 
             tfs = hobby.tfs
