@@ -15,12 +15,12 @@
                 <hr>
 
                 <!-- Preview Image -->
-                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                <img class="img-responsive" src="<%= @hobby.image %>" alt="">
 
                 <hr>
 
                 <!-- Post Content -->
-                <p> <%= @hobby.content %> </p>
+                <p> <%= simple_format @hobby.content %> </p>
 
                 <hr>
 

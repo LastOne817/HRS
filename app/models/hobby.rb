@@ -4,7 +4,7 @@ class Hobby < ActiveRecord::Base
     validates :name, presence: true
 
     def self.create(arg)
-        hobby = Hobby.new(name: arg[:name], content: arg[:content])
+        hobby = Hobby.new(name: arg[:name], image: arg[:image], content: arg[:content])
         hobby.save
         
         Tf.createAll(hobby.id)
