@@ -20,34 +20,7 @@ class ArticlesController < ApplicationController
         end
 
         qPropVec = PropVec.new()
-        qMatch = [[{prop: "rich", weight: 1.0}],
-        [{prop: "team", weight: 0.333}, {prop: "online", weight: 0.5}],
-        [{prop: "solo", weight: 0.5}, {prop: "writing", weight: 0.333}],
-        [{prop: "ps", weight: 0.333}],
-        [{prop: "ps", weight: 0.333}, {prop: "observe", weight: 0.25}],
-        [{prop: "competitive", weight: 0.2}, {prop: "persistence", weight: 0.2}],
-        [{prop: "collecting", weight: 0.333}],
-        [{prop: "active", weight: 0.333}, {prop: "team", weight: 0.333}],
-        [{prop: "ps", weight: 0.333}, {prop: "persistence", weight: 0.2}],
-        [{prop: "gamble", weight: 0.333}, {prop: "competitive", weight: 0.2}],
-        [{prop: "mechanic", weight: 0.5}],
-        [{prop: "competitive", weight: 0.2}, {prop: "persistence", weight: 0.2}],
-        [{prop: "observe", weight: 0.25}, {prop: "persistence", weight: 0.2}],
-        [{prop: "competitive", weight: 0.2}, {prop: "team", weight: 0.333}],
-        [{prop: "handuse", weight: 0.333}],
-        [{prop: "collecting", weight: 0.333}],
-        [{prop: "competitive", weight: 0.2}],
-        [{prop: "active", weight: 0.333}, {prop: "art", weight: 0.25}],
-        [{prop: "art", weight: 0.25}, {prop: "writing", weight: 0.333}],
-        [{prop: "solo", weight: 0.5}, {prop: "online", weight: 0.5}],
-        [{prop: "offline", weight: 1.0}, {prop: "observe", weight: 0.25}],
-        [{prop: "art", weight: 0.25}, {prop: "persistence", weight: 0.2}],
-        [{prop: "mechanic", weight: 0.5}, {prop: "handuse", weight: 0.333}],
-        [{prop: "gamble", weight: 0.333}, {prop: "active", weight: 0.333}],
-        [{prop: "writing", weight: 0.333}, {prop: "art", weight: 0.25}],
-        [{prop: "collecting", weight: 0.333}, {prop: "handuse", weight: 0.333}],
-        [{prop: "gamble", weight: 0.333}, {prop: "observe", weight: 0.25}],
-        [{prop: "mechanic", weight: 0.5}]]
+        qMatch = Weight.first.weightList
 
         for i in 0..27
             qMatch[i].each do |item|
