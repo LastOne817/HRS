@@ -61,14 +61,19 @@
   <div class="jumbotron">
     <div class="row">
       <div class="col-md-6">
-        <img class="img-responsive" src="http://fc03.deviantart.net/fs71/i/2014/100/4/3/blake_griffin_don_t_just_fly_wallpaper_by_assasinsilent-d7dvpdk.jpg" height="420" width="420">
+        <img class="img-responsive" src="<%= @randomhobby.image %>" height="420" width="420">
       </div>
 
       <div class="col-md-6">
-        <h3>Today's Hobby will be here</h3>
-        <p>many words are here. many words are here. many words are here. many words are here. many words are here. many words are here. many words are here. many words are here. many words are here. many words are here. </p>
+        <h3>Today's Hobby is <%= @randomhobby.name %></h3>
+                <p>
+                    <% if @randomhobby.content.length > 30 %>
+                         <%= @randomhobby.content.byteslice(0,30) %>...(continue)
+                    <% else %>
+                         <%= @randomhobby.content %>
+                    <% end %>
 
-          <button type="button" class="btn btn-primary">See more.</button>
+          <a class="btn btn-primary" href="/hobbies/<%=@randomhobby.id%>">See more<span class="glyphicon glyphicon-chevron-right"></span></a>
 
       </div>  
   </div>

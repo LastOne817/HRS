@@ -16,4 +16,8 @@ class HobbyTest < ActiveSupport::TestCase
         inactive = h.tfs.find_by(prop: "inactive")
         assert_in_delta inactive.value, 0
     end
+
+    test '#hobby_daily_picks' do
+      h1 = Hobby.daily_picks
+    end
 end

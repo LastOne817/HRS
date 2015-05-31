@@ -1,23 +1,31 @@
 require 'test_helper'
 
 class PagesControllerTest < ActionController::TestCase
-    test '#get_mainpage' do
-        #request.env["HTTP_REFERER"] = "/pages/index"
-        get :index 
-        assert_redirected_to pages_main_path
-    end
+   test '#get_indexpage' do
+     #request.env["HTTP_REFERER"] = "/pages/index"
+     get :index 
+     assert_redirected_to pages_main_path
+   end
 
-    test '#get_checklistpage' do
-        get :checklist
-        assert true 
-    end
+   test '#get_checklistpage' do
+     get :checklist
+     assert true 
+   end
 
-    test '#get_profilepage' do
-        request.env["HTTP_REFERER"] = "/pages/main"
-        session[:user_id] = 1
-        get :profile
-        assert true
-    end
+   test '#get_profilepage' do
+     request.env["HTTP_REFERER"] = "/pages/main"
+     session[:user_id] = 1
+     get :profile
+     assert true
+   end
+
+   test '#get_mainpage' do
+     request.env["HTTP_REFERER"] = "/pages/main"
+     session[:user_id] = 1
+     get :main
+     assert true
+   end
+
 
     test '#get_showlikedpage' do
         request.env["HTTP_REFERER"] = "/pages/main"

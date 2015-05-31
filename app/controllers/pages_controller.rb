@@ -8,6 +8,8 @@ class PagesController < ApplicationController
     end
 
     def main
+        #@randomhobby = Hobby.offset(rand(Hobby.count)).first
+        @randomhobby = Hobby.daily_picks
     end
 
     def login
