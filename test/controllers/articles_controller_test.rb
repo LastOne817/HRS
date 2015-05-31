@@ -4,7 +4,7 @@ class ArticlesControllerTest < ActionController::TestCase
 
     test '#article_create_success' do
         request.env["HTTP_REFERER"] = "/pages/checklist"
-        
+
         h2 = Hobby.new
         h2.name = "Hobby2"
         h2.save
@@ -38,46 +38,77 @@ class ArticlesControllerTest < ActionController::TestCase
             tf.save
         end
 
-         tf = Tf.find(1)
-         tf.value = 2.0
-         tf.save
+        tf = Tf.find(1)
+        tf.value = 2.0
+        tf.save
 
-         tf = Tf.find(3)
-         tf.value = 0.5
-         tf.save
+        tf = Tf.find(3)
+        tf.value = 0.5
+        tf.save
 
-         tf = Tf.find(4)
-         tf.value = 1.7
-         tf.save
+        tf = Tf.find(4)
+        tf.value = 1.7
+        tf.save
 
-         tf = Tf.find(5)
-         tf.value = 0.5
-         tf.save
+        tf = Tf.find(5)
+        tf.value = 0.5
+        tf.save
 
-         tf = Tf.find(7)
-         tf.value = 1.7
-         tf.save
+        tf = Tf.find(7)
+        tf.value = 1.7
+        tf.save
 
-         tf = Tf.find(15)
-         tf.value = 1.0
-         tf.save
+        tf = Tf.find(15)
+        tf.value = 1.0
+        tf.save
 
-         tf = Tf.find(h2.tfs.find_by(prop: "collecting").id)
-         tf.value = 1.2
-         tf.save
+        tf = Tf.find(h2.tfs.find_by(prop: "collecting").id)
+        tf.value = 1.2
+        tf.save
 
-         tf = Tf.find(h3.tfs.find_by(prop: "collecting").id)
-         tf.value = 3.7
-         tf.save
+        tf = Tf.find(h3.tfs.find_by(prop: "collecting").id)
+        tf.value = 3.7
+        tf.save
 
-         tf = Tf.find(h4.tfs.find_by(prop: "collecting").id)
-         tf.value = 1.8
-         tf.save
+        tf = Tf.find(h4.tfs.find_by(prop: "collecting").id)
+        tf.value = 1.8
+        tf.save
 
+        w = Weight.new
+        w.weightList = [[{prop: "rich", weight: 1.0}],
+                                   [{prop: "team", weight: 0.333}, {prop: "online", weight: 0.5}],
+                                   [{prop: "solo", weight: 0.5}, {prop: "writing", weight: 0.333}],
+                                   [{prop: "ps", weight: 0.333}],
+                                   [{prop: "ps", weight: 0.333}, {prop: "observe", weight: 0.25}],
+                                   [{prop: "competitive", weight: 0.2}, {prop: "persistence", weight: 0.2}],
+                                   [{prop: "collecting", weight: 0.333}],
+                                   [{prop: "active", weight: 0.333}, {prop: "team", weight: 0.333}],
+                                   [{prop: "ps", weight: 0.333}, {prop: "persistence", weight: 0.2}],
+                                   [{prop: "gamble", weight: 0.333}, {prop: "competitive", weight: 0.2}],
+                                   [{prop: "mechanic", weight: 0.5}],
+                                   [{prop: "competitive", weight: 0.2}, {prop: "persistence", weight: 0.2}],
+                                   [{prop: "observe", weight: 0.25}, {prop: "persistence", weight: 0.2}],
+                                   [{prop: "competitive", weight: 0.2}, {prop: "team", weight: 0.333}],
+                                   [{prop: "handuse", weight: 0.333}],
+                                   [{prop: "collecting", weight: 0.333}],
+                                   [{prop: "competitive", weight: 0.2}],
+                                   [{prop: "active", weight: 0.333}, {prop: "art", weight: 0.25}],
+                                   [{prop: "art", weight: 0.25}, {prop: "writing", weight: 0.333}],
+                                   [{prop: "solo", weight: 0.5}, {prop: "online", weight: 0.5}],
+                                   [{prop: "offline", weight: 1.0}, {prop: "observe", weight: 0.25}],
+                                   [{prop: "art", weight: 0.25}, {prop: "persistence", weight: 0.2}],
+                                   [{prop: "mechanic", weight: 0.5}, {prop: "handuse", weight: 0.333}],
+                                   [{prop: "gamble", weight: 0.333}, {prop: "active", weight: 0.333}],
+                                   [{prop: "writing", weight: 0.333}, {prop: "art", weight: 0.25}],
+                                   [{prop: "collecting", weight: 0.333}, {prop: "handuse", weight: 0.333}],
+                                   [{prop: "gamble", weight: 0.333}, {prop: "observe", weight: 0.25}],
+                                   [{prop: "mechanic", weight: 0.5}]]
+        w.save
 
+        session[:user_id] = 1
         post :create, {'q1' => 1, 'q2' => 2, 'q3' => 3, 'q4' => 1, 'q5' => 1, 'q6' => 2, 'q7' => 3, 'q8' => 1, 'q9' => 1, 'q10' => 2, 'q11' => 3, 'q12' => 1,
-			'q13' => 1, 'q14' => 2, 'q15' => 3, 'q16' => 1, 'q17' => 1, 'q18' => 2, 'q19' => 3, 'q20' => 1, 'q21' => 1, 'q22' => 2, 'q23' => 3, 'q24' => 1,
-			'q25' => 1, 'q26' => 2, 'q27' => 3, 'q28' => 1 }
+                       'q13' => 1, 'q14' => 2, 'q15' => 3, 'q16' => 1, 'q17' => 1, 'q18' => 2, 'q19' => 3, 'q20' => 1, 'q21' => 1, 'q22' => 2, 'q23' => 3, 'q24' => 1,
+                       'q25' => 1, 'q26' => 2, 'q27' => 3, 'q28' => 1 }
         assert_redirected_to "/articles/2"
     end
 
@@ -132,7 +163,7 @@ class ArticlesControllerTest < ActionController::TestCase
         h.save
 
         get :show, {:id => h.id}
-         
+
         assert true
     end
 end
