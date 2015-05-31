@@ -102,6 +102,34 @@ class PagesController < ApplicationController
             @pair.like_id = @user.like.id
             @pair.save
 
+            weightList = Weight.first
+            w = weightList.weightList
+            hobby = Hobby.find(@hobby_id)
+
+            prop = []
+            @user.checklist.each do |keyhash|
+                if keyhash[:weight] == 0
+                    keyhash[:weight] = 0.00001
+                end
+                prop.push( prop: keyhash[:prop], diff: hobby.tfs.find_by(prop: keyhash[:prop]).value / keyhash[:weight] )
+            end
+
+            prop.sort! { |b, a| a[:diff] <=> b[:diff] }
+
+            w.each do |proplist|
+                proplist.each do |keyhash|
+                    if keyhash[:prop] == prop[0][:prop]
+                        if @value == 0
+                            keyhash[:weight] *= 0.9
+                        else
+                            keyhash[:weight] *= 1.1
+                        end
+                    end
+                end
+            end
+
+            weightList.save
+
             render :json => { "error_code": 0}
         end
     end
