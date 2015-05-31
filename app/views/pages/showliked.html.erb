@@ -12,7 +12,7 @@
             <div class="col-md-2"> </div>
             <div class="col-md-4">
                 <a href="/hobbies/<%=Hobby.find(pair.hobby_id).id%>">
-                    <img class="img-responsive" src="http://placehold.it/250x150" alt="">
+                    <img class="img-responsive" src="<%= Hobby.find(pair.hobby_id).image %>" alt="" style="height:150px">
                 </a>
             </div>
             <div class="col-md-6">
