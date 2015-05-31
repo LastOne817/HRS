@@ -57,15 +57,17 @@ class HobbiesController < ApplicationController
 
         uploaded_io = params[:hobby][:photo]
 
-
+        puts uploaded_io       
+ 
         if hobby.save
 
             if uploaded_io !=nil
-                File.open(Rails.root.join('public', 'hobbyimage', hobby.id.to_s), 'wb') do |file|
+                File.open(Rails.root.join('public', 'hobbyimage', hobby.id.to_s), 'wb+') do |file|
                     file.write(uploaded_io.read)
                 end
                 hobby.image = "/hobbyimage/" + hobby.id.to_s
                 hobby.save
+                puts "FUCK"
             end
 
             tfs = hobby.tfs
