@@ -111,6 +111,9 @@ class PagesController < ApplicationController
                 if keyhash[:weight] == 0
                     keyhash[:weight] = 0.00001
                 end
+                if hobby.tfs.find_by(prop: keyhash[:prop]) == nil
+                    Tf.create(keyhash[:prop], hobby.id)
+                end
                 prop.push( prop: keyhash[:prop], diff: hobby.tfs.find_by(prop: keyhash[:prop]).value / keyhash[:weight] )
             end
 
@@ -119,7 +122,7 @@ class PagesController < ApplicationController
             w.each do |proplist|
                 proplist.each do |keyhash|
                     if keyhash[:prop] == prop[0][:prop]
-                        if @value == 0
+                        if params[:value].to_i == 0
                             keyhash[:weight] *= ( 0.9 / User.count )
                         else
                             keyhash[:weight] = 1.0 - (1.0 - keyhash[:weight]) * ( 0.9 / User.count )
@@ -127,8 +130,6 @@ class PagesController < ApplicationController
                     end
                 end
             end
-
-            
 
             weightList.save
 
