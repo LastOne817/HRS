@@ -116,7 +116,7 @@ class PagesController < ApplicationController
                 if hobby.tfs.find_by(prop: keyhash[:prop]) == nil
                     Tf.create(keyhash[:prop], hobby.id)
                 end
-                prop.push( prop: keyhash[:prop], diff: hobby.tfs.find_by(prop: keyhash[:prop]).value / keyhash[:weight] )
+                prop.push( prop: keyhash[:prop], diff: ( hobby.tfs.find_by(prop: keyhash[:prop]).value * Idf.find_by(prop: keyhash[:prop]).value / keyhash[:weight] ) )
             end
 
             prop.sort! { |b, a| a[:diff] <=> b[:diff] }
