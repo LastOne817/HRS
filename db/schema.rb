@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150530073829) do
+ActiveRecord::Schema.define(version: 20150531032449) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "hobby_first"
@@ -105,6 +105,13 @@ ActiveRecord::Schema.define(version: 20150530073829) do
     t.string   "token"
     t.string   "salt"
     t.datetime "expires_at"
+    t.text     "checklist"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "weights", force: :cascade do |t|
+    t.text     "weightList"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
