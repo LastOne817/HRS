@@ -1,19 +1,16 @@
 <%= render 'shared/header' %>
 
-<% if session[:user_id].nil? %>
-
-<%= render 'shared/notloggedin' %>
-
-<% else %>
 
 <div class="row">
     <div class="col-md-10">
         <h1 class="page-header">Hobby List 
             <small>Last 20</small> </h1>
     </div>
-    <div class="col-md-2 create-btn">
-        <%= button_to 'New article', new_hobby_path, class: 'btn btn-warning', method: :get %>
-    </div>
+    <% if session[:user_id] != nil %>
+        <div class="col-md-2 create-btn">
+            <%= button_to 'New article', new_hobby_path, class: 'btn btn-warning', method: :get %>
+        </div>
+    <% end %>
 </div>
 
 <% @hobbies.each do |hobby| %>
@@ -35,15 +32,15 @@
     <% end %>
         </p>
         <a class="btn btn-primary" href="/hobbies/<%=hobby.id%>">Show <span class="glyphicon glyphicon-chevron-right"></span></a>
-        <a class="btn btn-primary" href="/hobbies/<%=hobby.id%>/edit">Edit <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <% if session[:user_id] != nil %>
+            <a class="btn btn-primary" href="/hobbies/<%=hobby.id%>/edit">Edit <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <% end %>
     </div>
 </div>
 <hr>
       <% end %>
 </div>
 
-
-<% end %>
 
 <%= render 'shared/footer' %>
 

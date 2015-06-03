@@ -29,9 +29,11 @@
             <div class="col-md-10">
                 <a class="btn btn-primary" href="/hobbies">Back <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
-            <div class="col-md-2">
-                <%= button_to "Delete Hobby", { action: "destroy", id: @hobby.id }, method: :delete, class: 'btn btn-danger' %>
-            </div>
+            <% if session[:user_id] != nil %>
+                <div class="col-md-2">
+                    <%= button_to "Delete Hobby", { action: "destroy", id: @hobby.id }, method: :delete, class: 'btn btn-danger' %>
+                </div>
+            <% end %>
        </div>
 </div>
 
