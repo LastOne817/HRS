@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController
     def create
+
+        if Hobby.count >= 4
+        #it needs new indentation
         respond = []
         for i in 1..28
             qid = 'q' + i.to_s
@@ -57,6 +60,10 @@ class ArticlesController < ApplicationController
                                similarity_third: hobbyList[2][:similarity], similarity_fourth: hobbyList[3][:similarity])
         @article.save
         redirect_to @article
+        else
+            flash[:alert] = "There is not enough hobbies to recommend"
+            redirect_to :back
+        end
     end
 
     def show

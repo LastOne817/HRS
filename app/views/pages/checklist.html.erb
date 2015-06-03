@@ -1,5 +1,11 @@
 <%= render 'shared/header' %>
 
+<% if session[:user_id].nil? %>
+
+<%= render 'shared/notloggedin' %>
+
+<% else %>
+
 <div class="container">
     <div class="login">
         <h1> Checklist </h1> <br><br>
@@ -21,5 +27,7 @@
         </form>
     </div>
 </div>
+
+<% end %>
 
 <%= render 'shared/footer' %>

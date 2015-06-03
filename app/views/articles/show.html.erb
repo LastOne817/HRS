@@ -3,6 +3,7 @@
 <div class="container marketing">
 
     <div class="row">
+        <% if Hobby.find_by(id: @article.hobby_first)!=nil %>
         <div class="col-lg-3">
             <img class="img-circle" src="<%= Hobby.find(@article.hobby_first).image %>" alt="Generic placeholder image" width="140" height="140">
             <h2> <%= Hobby.find(@article.hobby_first).name %> </h2>
@@ -14,14 +15,28 @@
                 <%= Hobby.find(@article.hobby_first).content %>
         <% end %>
             </p>
-
+            <% if session[:user_id] != nil %>
             <p> 
             <button class="btn btn-primary" id="oneLike" role="button">like</button>
 
             <button class="btn btn-warning" id="oneDislike" role="button">dislike</button>
             </p>
+            <% end %>
             <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_first%>" role="button">Go to wiki &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
+        </div>
+        <% else %> 
+        <div class="col-lg-3">
+            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2> Deleted Hobby </h2>
+            <h3> this is deleted from database </h3>
+            <p>
+        </div>
+
+
+        <% end %>
+       
+
+         <% if Hobby.find_by(id: @article.hobby_second)!=nil %>
         <div class="col-lg-3">
             <img class="img-circle" src="<%= Hobby.find(@article.hobby_second).image %>" alt="Generic placeholder image" width="140" height="140">
             <h2> <%= Hobby.find(@article.hobby_second).name %> </h2>
@@ -33,13 +48,29 @@
                 <%= Hobby.find(@article.hobby_second).content %>
         <% end %>
             </p>
+            <% if session[:user_id] != nil %>
             <p>
             <button class="btn btn-primary" id="twoLike" role="button">like</button>
 
             <button class="btn btn-warning" id="twoDislike" role="button">dislike</button>
             </p>
+            <% end %>
             <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_second%>" role="button">Go to wiki &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
+        </div>
+        <% else %>
+
+        <div class="col-lg-3">
+            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2> Deleted Hobby </h2>
+            <h3> this is deleted from database </h3>
+            <p>
+        </div>
+
+
+        <% end %>
+
+
+        <% if Hobby.find_by(id: @article.hobby_third)!=nil %>
         <div class="col-lg-3">
             <img class="img-circle" src="<%= Hobby.find(@article.hobby_third).image %>" alt="Generic placeholder image" width="140" height="140">
             <h2> <%= Hobby.find(@article.hobby_third).name %> </h2>
@@ -52,12 +83,27 @@
         <% end %>
             </p>
             <p>
+            <% if session[:user_id] != nil %>
             <button class="btn btn-primary" id="threeLike" role="button">like</button>
 
             <button class="btn btn-warning" id="threeDislike" role="button">dislike</button>
             </p>
+            <% end %>
             <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_third%>" role="button">Go to wiki &raquo;</a></p>
         </div>
+         <% else %>
+
+        <div class="col-lg-3">
+            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2> Deleted Hobby </h2>
+            <h3> this is deleted from database </h3>
+            <p>
+        </div>
+
+
+        <% end %>
+
+        <% if Hobby.find_by(id: @article.hobby_fourth)!=nil %>
         <div class="col-lg-3">
             <img class="img-circle" src="<%= Hobby.find(@article.hobby_fourth).image %>" alt="Generic placeholder image" width="140" height="140">
             <h2> <%= Hobby.find(@article.hobby_fourth).name %> </h2>
@@ -69,13 +115,28 @@
                 <%= Hobby.find(@article.hobby_fourth).content %>
         <% end %>
             </p>
+            <% if session[:user_id] != nil %>
             <p>
             <button class="btn btn-primary" id="fourLike" role="button">like</button>
 
             <button class="btn btn-warning" id="fourDislike" role="button">dislike</button>
             </p>
+            <% end %>
             <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_fourth%>" role="button">Go to wiki &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
+        </div>
+        <% else %>
+
+        <div class="col-lg-3">
+            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2> Deleted Hobby </h2>
+            <h3> this is deleted from database </h3>
+            <p>
+        </div>
+
+
+        <% end %>
+
+          
     </div><!-- /.row -->
 </div> 
 <h3> 
@@ -224,15 +285,25 @@
         </style>
 
         <script>
-
+<% if Hobby.find_by(id: @article.hobby_first)!=nil %>
 $("#oneLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_first).id %>); });
 $("#oneDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_first).id %>); });
+<% end %>
+
+<% if Hobby.find_by(id: @article.hobby_second)!=nil %>
 $("#twoLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_second).id %>); });
 $("#twoDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_second).id %>); });
+<% end %>
+
+<% if Hobby.find_by(id: @article.hobby_third)!=nil %>
 $("#threeLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_third).id %>); });
 $("#threeDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_third).id %>); });
+<% end %>
+
+<% if Hobby.find_by(id: @article.hobby_fourth)!=nil %>
 $("#fourLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_fourth).id %>); });
 $("#fourDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_fourth).id %>); });
+<% end %>
 
 function registerAjax(v,i){
     $.ajax({
