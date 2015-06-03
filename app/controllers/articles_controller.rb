@@ -71,6 +71,10 @@ class ArticlesController < ApplicationController
         @comments = Comment.where(:article_id => params[:id])
     end
 
+    def board
+        @articles = Article.last(20)
+    end
+
     def destroy
         @article = Article.find(params[:id])
         @article.destroy

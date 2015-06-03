@@ -6,8 +6,9 @@
       <%= link_to image_tag("logo.png", border: 0), action: 'main', controller: 'pages' %>
     </div>
     <ul>
-	  <li><h3><%= link_to "Wiki", controller:"hobbies", action: "index" %></h3></li>
-      <li><h3><%= link_to "Recommendation", controller: "pages", action: "checklist" %></h3></li>
+      <li><h3><%= link_to "Wiki", controller:"hobbies", action: "index" %></h3></li>
+      <li><h3><%= link_to "Recommend", controller: "pages", action: "checklist" %></h3></li>
+      <li><h3><%= link_to "Articles", controller: "articles", action: "board" %> </h3></li>
       <li class="right"><h3><%= link_to "Sign up", controller: "pages", action: "signup" %></h3></li>
       <li class="right"><h3><%= link_to "Log in", controller: "pages", action: "login"  %></h3></li>
     </ul>
@@ -23,9 +24,9 @@
       <%= link_to image_tag("logo.png", border: 0), action: 'main', controller: 'pages' %>
     </div>
     <ul>
-	  <li><h3><%= link_to "Wiki", controller:"hobbies", action: "index" %></h3></li>
-      <li><h3><%= link_to "Recommendation", controller: "pages", action: "checklist" %></h3></li>
-
+      <li><h3><%= link_to "Wiki", controller:"hobbies", action: "index" %></h3></li>
+      <li><h3><%= link_to "Recommend", controller: "pages", action: "checklist" %></h3></li>
+      <li><h3><%= link_to "Articles", controller: "articles", action: "board" %> </h3></li>
       <li class="right"><h3><%= link_to "Log out", controller: "users", action: "logout"  %></h3></li>
       <li class="right"><h3><%= link_to "Edit Profile", controller: "pages", action: "profile" %></h3></li>
       <li class="right"><h3><%= link_to "Liked/Disliked Hobbies", controller: "pages", action: "hobbylist" %></h3></li>

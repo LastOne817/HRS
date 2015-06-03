@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     post 'users/changePhoto', to: 'users#changePhoto'
 
     post 'articles/create'
+    get 'articles/board'
     post 'comments/create'
     post 'comments/delete'
 
