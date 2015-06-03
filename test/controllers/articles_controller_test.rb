@@ -159,4 +159,7 @@ class ArticlesControllerTest < ActionController::TestCase
         assert true
     end
 
+    test '#article_board' do
+        get :board
+    end
 end

@@ -1,0 +1,66 @@
+<%= render 'shared/header' %>
+
+
+
+<div class="row">
+    <div class="col-md-10">
+        <h1 class="page-header">Article List
+            <small>Last 20</small> </h1>
+    </div>
+</div>
+
+<% @articles.each do |article| %>
+
+    <div class="row">
+    <div class="col-md-4">
+        <a href="/articles/<%=article.id%>">
+            <% if Hobby.find_by(id: article.hobby_first) != nil %>
+            <img class="img-responsive ctr-align" src="<%= Hobby.find_by(id: article.hobby_first).image %>" alt="" style="height:150px">
+            <% else %>
+             <img class="img-responsive ctr-align" src="http://placehold.it/150x150" alt="" style="height:150px">
+            <% end %>
+        </a>
+    </div>
+    <div class="col-md-6">
+    <div class="row">
+    <% if Hobby.find_by(id: article.hobby_first) != nil %>
+        <h2>1. <%= Hobby.find_by(id: article.hobby_first).name %></h2>
+    <% end %>
+    </div>
+    <div class="row">
+    <% if Hobby.find_by(id: article.hobby_second) != nil %>
+        <h3>2. <%= Hobby.find_by(id: article.hobby_second).name %></h3>
+    <% end %>
+    </div>
+    <div class="row">
+    <% if Hobby.find_by(id: article.hobby_third) != nil %>
+        <h4>3. <%= Hobby.find_by(id: article.hobby_third).name %></h4>
+    <% end %>
+    </div>
+    <div class="row">
+    <% if Hobby.find_by(id: article.hobby_fourth) != nil %>
+        <h5>4. <%= Hobby.find_by(id: article.hobby_fourth).name %></h5>
+    <% end %>
+    </div>
+    </div>
+    <div class="col-md-2">
+        <a class="btn btn-primary btn-mid" href="/articles/<%=article.id%>" role="button">Go to the article</a>
+    </div>
+</div>
+<hr>
+      <% end %>
+
+<%= render 'shared/footer' %>
+
+<style>
+
+.btn-mid{
+    margin-top: 75px;
+}
+
+.ctr-align{
+    float: right;
+    margin-right: 10px;
+}
+
+</style>
