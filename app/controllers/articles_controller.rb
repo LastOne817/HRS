@@ -40,12 +40,12 @@ class ArticlesController < ApplicationController
             q_abs = 0.0
             qPropVec.vec.each do |keyhash|
                 if hobby.tfs.find_by(prop: keyhash[:prop]) != nil
-                    prod += hobby.tfs.find_by(prop: keyhash[:prop]).value * keyhash[:weight]
-                    hobby_abs += hobby.tfs.find_by(prop: keyhash[:prop]).value * hobby.tfs.find_by(prop: keyhash[:prop]).value
+                    prod += hobby.tfs.find_by(prop: keyhash[:prop]).value * keyhash[:weight] * Idf.find_by(prop: keyhash[:prop]).value 
+                    hobby_abs += hobby.tfs.find_by(prop: keyhash[:prop]).value ** 2
                     q_abs += keyhash[:weight]
                 end
             end
-            hobbyList.push({hobby: hobby, similarity: ((prod * prod) / (hobby_abs * q_abs)).nan? ? 0 : (prod * prod) / (hobby_abs * q_abs)})
+            hobbyList.push({hobby: hobby, similarity: ((prod ** 2) / (hobby_abs * q_abs)).nan? ? 0 : (prod ** 2) / (hobby_abs * q_abs)})
         end
 
         hobbyList.sort! { |b, a| a[:similarity] <=> b[:similarity] }
