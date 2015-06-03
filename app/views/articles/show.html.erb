@@ -15,12 +15,13 @@
                 <%= Hobby.find(@article.hobby_first).content %>
         <% end %>
             </p>
-
+            <% if session[:user_id] != nil %>
             <p> 
             <button class="btn btn-primary" id="oneLike" role="button">like</button>
 
             <button class="btn btn-warning" id="oneDislike" role="button">dislike</button>
             </p>
+            <% end %>
             <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_first%>" role="button">Go to wiki &raquo;</a></p>
         </div>
         <% else %> 
@@ -47,11 +48,13 @@
                 <%= Hobby.find(@article.hobby_second).content %>
         <% end %>
             </p>
+            <% if session[:user_id] != nil %>
             <p>
             <button class="btn btn-primary" id="twoLike" role="button">like</button>
 
             <button class="btn btn-warning" id="twoDislike" role="button">dislike</button>
             </p>
+            <% end %>
             <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_second%>" role="button">Go to wiki &raquo;</a></p>
         </div>
         <% else %>
@@ -80,10 +83,12 @@
         <% end %>
             </p>
             <p>
+            <% if session[:user_id] != nil %>
             <button class="btn btn-primary" id="threeLike" role="button">like</button>
 
             <button class="btn btn-warning" id="threeDislike" role="button">dislike</button>
             </p>
+            <% end %>
             <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_third%>" role="button">Go to wiki &raquo;</a></p>
         </div>
          <% else %>
@@ -110,11 +115,13 @@
                 <%= Hobby.find(@article.hobby_fourth).content %>
         <% end %>
             </p>
+            <% if session[:user_id] != nil %>
             <p>
             <button class="btn btn-primary" id="fourLike" role="button">like</button>
 
             <button class="btn btn-warning" id="fourDislike" role="button">dislike</button>
             </p>
+            <% end %>
             <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_fourth%>" role="button">Go to wiki &raquo;</a></p>
         </div>
         <% else %>
