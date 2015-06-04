@@ -3,6 +3,9 @@ require 'digest'
 Given(/^I signed up as "(.*?)" and "(.*?)" and "(.*?)"$/) do |email, username, password|
     user = User.new({salt: "12345678",email: email, username: username, password: Digest::SHA256.hexdigest("12345678" + password)})
     user.save
+    like = Like.new
+    like.user_id = user.id
+    like.save
 end
 
 Then(/^I "login" page should be opened$/) do
