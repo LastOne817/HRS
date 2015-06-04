@@ -162,4 +162,10 @@ class ArticlesControllerTest < ActionController::TestCase
     test '#article_board' do
         get :board
     end
+
+    test '#article_not_exist' do
+        get :show, {:id => 99999}
+        assert_redirected_to "/pages/main"
+        assert flash[:alert] == "article is deleted or not exist"
+    end
 end

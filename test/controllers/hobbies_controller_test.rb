@@ -61,4 +61,10 @@ class HobbiesControllerTest < ActionController::TestCase
      assert hh.image == "/hobbyimage/" + hh.id.to_s
     end
 
+    test '#hobby_not_exist' do
+        get :show, {:id => 99999}
+        assert_redirected_to "/pages/main"
+        assert flash[:alert] == "hobby is deleted or not exist"
+    end
+
 end
