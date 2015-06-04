@@ -67,13 +67,23 @@ class PagesController < ApplicationController
     end
 
     def showliked
-        @user = User.find(session[:user_id])
-        @pairs = @user.like.pairs.all
+        if session[:user_id] == nil
+            flash[:alert] = "please log in to see this page"
+            redirect_to pages_main_path
+        else
+            @user = User.find(session[:user_id])
+            @pairs = @user.like.pairs.all
+        end
     end
 
     def showdisliked
-        @user = User.find(session[:user_id])
-        @pairs = @user.like.pairs.all
+        if session[:user_id] == nil
+            flash[:alert] = "please log in to see this page"
+            redirect_to pages_main_path
+        else
+            @user = User.find(session[:user_id])
+            @pairs = @user.like.pairs.all
+        end
     end
 
     def deletefromlist
