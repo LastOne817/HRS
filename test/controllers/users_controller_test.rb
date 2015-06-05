@@ -93,12 +93,25 @@ class UsersControllerTest < ActionController::TestCase
      session[:user_id] = 1
    #  file = File.read(Rails.root.join('app', 'assets', 'images', 'logo.png'))
    
-     file = File.new(Rails.root + 'app/assets/images/logo.png')
+     file = File.new(Rails.root + 'app/assets/images/Penguins.jpg')
      upload = ActionDispatch::Http::UploadedFile.new(:tempfile => file, :filename => File.basename(file))
      post :changePhoto, {'photo' => upload}
      assert_redirected_to root_path
      assert flash[:alert] == "Photo Changed Successfully"
   end
+
+  test '#changePhoto_failure' do
+     request.env["HTTP_REFERER"] = "/pages/profile"
+     session[:user_id] = 1
+   #  file = File.read(Rails.root.join('app', 'assets', 'images', 'logo.png'))
+
+     file = File.new(Rails.root + 'app/assets/images/logo.png')
+     upload = ActionDispatch::Http::UploadedFile.new(:tempfile => file, :filename => File.basename(file))
+     post :changePhoto, {'photo' => upload}
+     assert_redirected_to pages_profile_path
+     assert flash[:alert] == "Only jpg file can be uploaded"
+  end
+
 
 
 end

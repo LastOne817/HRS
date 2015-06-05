@@ -23,7 +23,7 @@ When(/^I fill current password and new password and new password confirm$/) do
 end
 
 When(/^I upload a photo$/) do
-  attach_file(:photo, File.join(Rails.root, 'features', 'upload-files', 'clippers.png'))
+  attach_file(:photo, File.join(Rails.root, 'features', 'upload-files', 'Penguins.jpg'))
 end
 
 

@@ -64,15 +64,20 @@ class UsersController < ApplicationController
         @user = User.find(session[:user_id])
 
         uploaded_io = params[:photo]
-        File.open(Rails.root.join('public', 'profile', @user.id.to_s), 'wb') do |file|
-            file.write(uploaded_io.read)
-        end
-        # uploaded_io.original_filename
+        if uploaded_io.original_filename.include?(".jpg") == false
+            flash[:alert] = "Only jpg file can be uploaded"
+            redirect_to :back
+        else
 
-        @user.image = "/profile/" + @user.id.to_s
-        @user.save
-        flash[:alert]="Photo Changed Successfully"
-        redirect_to root_path 
+            File.open(Rails.root.join('public', 'profile', @user.id.to_s), 'wb') do |file|
+                file.write(uploaded_io.read)
+            end
+
+            @user.image = "/profile/" + @user.id.to_s
+            @user.save
+            flash[:alert]="Photo Changed Successfully"
+            redirect_to root_path
+        end
     end
 
     def changePassword
