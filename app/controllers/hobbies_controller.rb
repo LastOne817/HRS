@@ -9,7 +9,11 @@ class HobbiesController < ApplicationController
     end
 
     def show
-        @hobby = Hobby.find(params[:id])
+        @hobby = Hobby.find_by(id: params[:id])
+        if @hobby == nil
+            flash[:alert] = "hobby is deleted or not exist"
+            redirect_to pages_main_path
+        end
     end
 
     def edit

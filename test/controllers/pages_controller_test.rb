@@ -34,6 +34,21 @@ class PagesControllerTest < ActionController::TestCase
         assert true
     end
 
+    test '#likedpage_not_login' do
+        session[:user_id] = nil
+        get :showliked
+        assert flash[:alert] == "please log in to see this page"
+        assert_redirected_to "/pages/main"
+    end
+
+    test '#dislikedpage_not_login' do
+        session[:user_id] = nil
+        get :showdisliked
+        assert flash[:alert] == "please log in to see this page"
+        assert_redirected_to "/pages/main"
+    end
+
+
     test '#get_showdislikedpage' do
         request.env["HTTP_REFERER"] = "/pages/main"
         session[:user_id] = 1

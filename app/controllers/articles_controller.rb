@@ -67,8 +67,13 @@ class ArticlesController < ApplicationController
     end
 
     def show
-        @article = Article.find(params[:id])
-        @comments = Comment.where(:article_id => params[:id])
+        @article = Article.find_by(id: params[:id])
+        if @article == nil
+            flash[:alert] = "article is deleted or not exist"
+            redirect_to pages_main_path
+        else
+            @comments = Comment.where(:article_id => params[:id])
+        end
     end
 
     def board
