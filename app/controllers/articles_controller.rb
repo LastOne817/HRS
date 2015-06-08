@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
             qPropVec.vec.each do |keyhash|
                 if hobby.tfs.find_by(prop: keyhash[:prop]) != nil
                     prod += hobby.tfs.find_by(prop: keyhash[:prop]).value * keyhash[:weight] * Idf.find_by(prop: keyhash[:prop]).value 
-                    hobby_abs += hobby.tfs.find_by(prop: keyhash[:prop]).value ** 2
+                    hobby_abs += ( hobby.tfs.find_by(prop: keyhash[:prop]).value * Idf.find_by(prop: keyhash[:prop]).value ) ** 2
                     q_abs += keyhash[:weight]
                 end
             end
