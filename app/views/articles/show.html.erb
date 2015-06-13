@@ -193,7 +193,7 @@
                     <div class="media-body">
 
                         <h4 class="media-heading user_name"> <%= User.find(comment.user_id).username %></h4>
-                        <%= comment.text %>
+                        <%= simple_format(comment.text, :sanitize => true) %>
 
                     </div>
                 </div> 
