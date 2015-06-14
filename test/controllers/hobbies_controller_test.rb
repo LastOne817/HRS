@@ -39,17 +39,41 @@ class HobbiesControllerTest < ActionController::TestCase
     end
 
  test '#hobbies_create_hobby_success_with_image' do
-     file = File.new(Rails.root + 'app/assets/images/logo.png')
+    file = File.new(Rails.root + 'app/assets/images/Penguins.jpg')
      upload = ActionDispatch::Http::UploadedFile.new(:tempfile => file, :filename => File.basename(file))
-     t = {:name => "hobbies_create_hobby", :content => "testcontent", :photo => upload}
+     t = {:name => "hobbies_create_hobby_success", :content => "testcontent", :photo => upload}
      post :create, {hobby: t}
-     h = Hobby.find_by(name: "hobbies_create_hobby")
+     h = Hobby.find_by(name: "hobbies_create_hobby_success")
      assert h.content == "testcontent"
      assert h.image == "/hobbyimage/" + h.id.to_s
     end
 
- test '#hobbies_update_hobby_success' do
+test '#hobbies_create_hobby_failure_with_image' do
+     request.env["HTTP_REFERER"] = "/pages/main"
      file = File.new(Rails.root + 'app/assets/images/logo.png')
+     upload = ActionDispatch::Http::UploadedFile.new(:tempfile => file, :filename => File.basename(file))
+     t = {:name => "hobbies_create_hobby_failure", :content => "testcontent", :photo => upload}
+     post :create, {hobby: t}
+     h = Hobby.find_by(name: "hobbies_create_hobby")
+     assert h == nil
+    end
+
+
+ test '#hobbies_update_hobby_failure' do
+     request.env["HTTP_REFERER"] = "/pages/main"
+     file = File.new(Rails.root + 'app/assets/images/logo.png')
+     upload = ActionDispatch::Http::UploadedFile.new(:tempfile => file, :filename => File.basename(file))
+     t = {:name => "hobbies_update_hobby_failure", :content => "testcontent"}
+     post :create, {hobby: t}
+     h = Hobby.find_by(name: "hobbies_update_hobby_failure")
+     t = {:name => "hobbies_update_hobby_failure", :content => "contentchanged", :photo => upload}
+     post :update, {hobby: t, id: h.id}
+     hh = Hobby.find_by(name: "hobbies_update_hobby_failure")
+     assert hh.content == "testcontent"
+ end
+
+ test '#hobbies_update_hobby_success' do
+     file = File.new(Rails.root + 'app/assets/images/Penguins.jpg')
      upload = ActionDispatch::Http::UploadedFile.new(:tempfile => file, :filename => File.basename(file))
      t = {:name => "hobbies_update_hobby", :content => "testcontent"}
      post :create, {hobby: t}

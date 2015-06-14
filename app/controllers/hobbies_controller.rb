@@ -25,12 +25,19 @@ class HobbiesController < ApplicationController
         hobby.content = params[:hobby][:content]
 
         uploaded_io = params[:hobby][:photo]
+  
+         if uploaded_io != nil && uploaded_io.original_filename.include?(".jpg") == false && uploaded_io.original_filename.include?(".jpeg") == false
+            flash[:alert] = "Only jpg file can be uploaded"
+            redirect_to :back and return
+         end
+
 
         if hobby.save
             if uploaded_io !=nil
                 File.open(Rails.root.join('public', 'hobbyimage', hobby.id.to_s), 'wb') do |file|
-                    file.write(uploaded_io.read)
+                file.write(uploaded_io.read)
                 end
+
                 hobby.image = "/hobbyimage/" + hobby.id.to_s
                 hobby.save
             else
@@ -58,16 +65,20 @@ class HobbiesController < ApplicationController
         hobby.content = params[:hobby][:content]
 
         uploaded_io = params[:hobby][:photo]     
- 
+        if uploaded_io != nil && uploaded_io.original_filename.include?(".jpg") == false && uploaded_io.original_filename.include?(".jpeg") == false
+            flash[:alert] = "Only jpg file can be uploaded"
+            redirect_to :back and return
+        end
+
         if hobby.save
+
             if uploaded_io !=nil
                 File.open(Rails.root.join('public', 'hobbyimage', hobby.id.to_s), 'wb+') do |file|
-                    file.write(uploaded_io.read)
+                file.write(uploaded_io.read)
                 end
                 hobby.image = "/hobbyimage/" + hobby.id.to_s
                 hobby.save
             end
-
             tfs = hobby.tfs
             content = hobby.content
 
