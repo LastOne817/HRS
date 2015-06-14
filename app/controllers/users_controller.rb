@@ -64,7 +64,7 @@ class UsersController < ApplicationController
         @user = User.find(session[:user_id])
 
         uploaded_io = params[:photo]
-        if uploaded_io.original_filename.include?(".jpg") == false
+        if uploaded_io.original_filename.include?(".jpg") == false && uploaded_io.original_filename.include?(".jpeg") == false
             flash[:alert] = "Only jpg file can be uploaded"
             redirect_to :back
         else

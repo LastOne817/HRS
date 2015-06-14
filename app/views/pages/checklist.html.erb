@@ -10,7 +10,7 @@
     <div class="login">
         <h1> Checklist </h1> <br><br>
 
-        <form class="form-horizontal" action="/articles/create" method="post">
+        <form class="form-horizontal" action="/articles/create" method="post" id="checklist">
             <% @questionaire.each do |question| %>
                 <div class="form-group">
                 <label class="col-md-8 control-label"><%= question[:question] %></label>
@@ -31,3 +31,14 @@
 <% end %>
 
 <%= render 'shared/footer' %>
+
+<script>
+
+$('form').submit(function (){
+
+
+    $('#checklist_submit').attr('disabled',true);
+    
+});
+
+</script>
