@@ -126,6 +126,7 @@ class PagesController < ApplicationController
                 target_tf = hobby.tfs.find_by(prop: keyhash[:prop])
                 if target_tf == nil
                     Tf.create(keyhash[:prop], hobby.id)
+                    target_tf = hobby.tfs.find_by(prop: keyhash[:prop])
                 end
                 prop.push( prop: keyhash[:prop], diff: ( target_tf.value * Idf.find_by(prop: keyhash[:prop]).value / keyhash[:weight] ) )
             end
