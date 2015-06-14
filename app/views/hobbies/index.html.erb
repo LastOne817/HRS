@@ -26,9 +26,9 @@
         <h3><%= hobby.name %></h3>
         <p>
         <% if hobby.content.length > 20 %>
-            <%= hobby.content.byteslice(0,20) %>...(continue)
+            <%= simple_format(hobby.content.byteslice(0,20)) %>...(continue)
     <% else %>
-            <%= hobby.content %> 
+            <%= simple_format(hobby.content) %> 
     <% end %>
         </p>
         <a class="btn btn-primary" href="/hobbies/<%=hobby.id%>">Show <span class="glyphicon glyphicon-chevron-right"></span></a>
