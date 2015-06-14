@@ -42,7 +42,7 @@ class ArticlesController < ApplicationController
                 if hobby.tfs.find_by(prop: keyhash[:prop]) != nil
                     prod += hobby.tfs.find_by(prop: keyhash[:prop]).value * keyhash[:weight] * Idf.find_by(prop: keyhash[:prop]).value 
                     hobby_abs += ( hobby.tfs.find_by(prop: keyhash[:prop]).value * Idf.find_by(prop: keyhash[:prop]).value ) ** 2
-                    q_abs += keyhash[:weight]
+                    q_abs += keyhash[:weight] ** 2
                 end
             end
             hobbyList.push({hobby: hobby, similarity: ((prod ** 2) / (hobby_abs * q_abs)).nan? ? 0 : (prod ** 2) / (hobby_abs * q_abs)})
