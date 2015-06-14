@@ -9,10 +9,11 @@ class User < ActiveRecord::Base
         @user = User.new
         @user.provider = auth.provider
         @user.uid = auth.uid
+        auth_info = auth.info
         if auth.info
-            @user.username = auth.info.name
-            @user.email = auth.info.email
-            @user.image = auth.info.image
+            @user.username = auth_info.name
+            @user.email = auth_info.email
+            @user.image = auth_info.image
             @user.password = auth.uid
         end
         return @user

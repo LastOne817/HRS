@@ -15,14 +15,12 @@ class IdfsController < ApplicationController
         idfs = Idf.all
 
         idfs.each do |idf|
-
             prop = idf.prop
             max = 0
             contain = 0
             hobbies = Hobby.all
 
             hobbies.each do |hobby|
-
                 max = max + 1
    
                 h = hobby.tfs.find_by(prop: prop)
@@ -44,7 +42,6 @@ class IdfsController < ApplicationController
     def destroy
         idf = Idf.find_by(prop: params[:prop])
         idf.destroy
-         redirect_to :back  #this is for temporary thing
-
+        redirect_to :back  #this is for temporary thing
     end
 end

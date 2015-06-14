@@ -14,7 +14,8 @@ class Tf < ActiveRecord::Base
     end
 
     def self.createAll(hobby_id)
-        Property.all.each do |prop|
+        props = Property.all
+        props.each do |prop|
             newTf = Tf.new
             newTf.prop = prop.name
             newTf.value = 0.00

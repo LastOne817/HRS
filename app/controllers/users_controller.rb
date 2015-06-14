@@ -19,7 +19,6 @@ class UsersController < ApplicationController
     end
 
     def signup
-
         @user = User.new(:email => params[:email])
         @user.username = params[:username]
         if params[:password].length < 5 || params[:password].length >20
@@ -68,7 +67,6 @@ class UsersController < ApplicationController
             flash[:alert] = "Only jpg file can be uploaded"
             redirect_to :back
         else
-
             File.open(Rails.root.join('public', 'profile', @user.id.to_s), 'wb') do |file|
                 file.write(uploaded_io.read)
             end

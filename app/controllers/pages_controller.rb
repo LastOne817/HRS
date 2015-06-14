@@ -123,13 +123,14 @@ class PagesController < ApplicationController
                 if keyhash[:weight] == 0
                     keyhash[:weight] = 0.00001
                 end
-                if hobby.tfs.find_by(prop: keyhash[:prop]) == nil
+                target_tf = hobby.tfs.find_by(prop: keyhash[:prop])
+                if target_tf == nil
                     Tf.create(keyhash[:prop], hobby.id)
                 end
-                prop.push( prop: keyhash[:prop], diff: ( hobby.tfs.find_by(prop: keyhash[:prop]).value * Idf.find_by(prop: keyhash[:prop]).value / keyhash[:weight] ) )
+                prop.push( prop: keyhash[:prop], diff: ( target_tf.value * Idf.find_by(prop: keyhash[:prop]).value / keyhash[:weight] ) )
             end
 
-            prop.sort! { |b, a| a[:diff] <=> b[:diff] }
+            prop.sort! { |more, less| less[:diff] <=> more[:diff] }
 
             w.each do |proplist|
                 proplist.each do |keyhash|

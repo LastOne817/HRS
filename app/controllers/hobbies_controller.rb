@@ -27,8 +27,6 @@ class HobbiesController < ApplicationController
         uploaded_io = params[:hobby][:photo]
 
         if hobby.save
-            
-
             if uploaded_io !=nil
                 File.open(Rails.root.join('public', 'hobbyimage', hobby.id.to_s), 'wb') do |file|
                     file.write(uploaded_io.read)
@@ -62,7 +60,6 @@ class HobbiesController < ApplicationController
         uploaded_io = params[:hobby][:photo]     
  
         if hobby.save
-
             if uploaded_io !=nil
                 File.open(Rails.root.join('public', 'hobbyimage', hobby.id.to_s), 'wb+') do |file|
                     file.write(uploaded_io.read)

@@ -10,10 +10,12 @@ class Idf < ActiveRecord::Base
 
 
     def self.update
-        Idf.all.each do |idf|
+        idfs = Idf.all
+        idfs.each do |idf|
             max = 0
             contain = 0
-            Hobby.all.each do |hobby|
+            hobbies = Hobby.all
+            hobbies.each do |hobby|
                 max = max + 1
 
                 h = hobby.tfs.find_by(prop: idf.prop)
