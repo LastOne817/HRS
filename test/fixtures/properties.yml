@@ -1,0 +1,86 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+#one: {}
+# column: value
+#
+#two: {}
+#  column: value
+one:
+    id: 1
+    name: "rich"
+
+two:
+    id: 2
+    name: "poor"
+
+three:
+    id: 3
+    name: "active"
+
+four:
+    id: 4
+    name: "inactive"
+
+five:
+    id: 5
+    name: "ps"
+
+six:
+    id: 6
+    name: "solo"
+
+seven:
+    id: 7
+    name: "team"
+
+eight:
+    id: 8
+    name: "online"
+
+nine:
+    id: 9
+    name: "offline"
+
+ten:
+    id: 10
+    name: "handuse"
+
+eleven:
+    id: 11
+    name: "art"
+
+twelve:
+    id: 12
+    name: "mechanic"
+
+thirteen:
+    id: 13
+    name: "collecting"
+
+fourteen:
+    id: 14
+    name: "gamble"
+
+fifteen:
+    id: 15
+    name: "writing"
+
+sixteen:
+    id: 16
+    name: "competitive"
+
+seventeen:
+    id: 17
+    name: "non_competitive"
+
+eightteen:
+    id: 18
+    name: "observe"
+
+nineteen:
+    id: 19
+    name: "persistence"

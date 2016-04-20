@@ -1,0 +1,44 @@
+<%= render 'shared/header' %>
+
+<% if session[:user_id].nil? %>
+
+<%= render 'shared/notloggedin' %>
+
+<% else %>
+
+<div class="container">
+    <div class="login">
+        <h1> Checklist </h1> <br><br>
+
+        <form class="form-horizontal" action="/articles/create" method="post" id="checklist">
+            <% @questionaire.each do |question| %>
+                <div class="form-group">
+                <label class="col-md-8 control-label"><%= question[:question] %></label>
+                <div class="col-md-4">
+                    <div id="line1" class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default"><input type="radio" name="<%= question[:id] %>" id="<%= question[:id]%>_1" value="1">Yes</label>
+                        <label class="btn btn-default"><input type="radio" name="<%= question[:id] %>" id="<%= question[:id]%>_2" value="2">I don't know</label>
+                        <label class="btn btn-default"><input type="radio" name="<%= question[:id] %>" id="<%= question[:id]%>_3" value="3">No</label>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        <button type="submit" id="checklist_submit" class="btn btn-primary">Magic Happens!</button>
+        </form>
+    </div>
+</div>
+
+<% end %>
+
+<%= render 'shared/footer' %>
+
+<script>
+
+$('form').submit(function (){
+
+
+    $('#checklist_submit').attr('disabled',true);
+    
+});
+
+</script>

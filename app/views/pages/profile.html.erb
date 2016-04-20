@@ -1,0 +1,130 @@
+
+<%= render 'shared/header' %>
+
+<div class="container" style="margin-top: 50px">
+	<div class="panel panel-primary">
+  		<div class="panel-heading"><h1 class="h1-center">User Profile</h1></div>
+  			<div class="panel-body profile-panel-body">
+              <div class="row">
+                <div class="col-md-3" align="center"> 
+                    <img alt="User Pic" src=<%= @user.image %> class="img-circle img-profile"> <br>
+                		<button type="button" class="btn btn-primary" id="profile_change_photo" data-toggle="modal" data-target="#Modal-Change-Photo"><h4>Change Photo</h4></button>
+                	 </div>
+                
+                <div class="col-md-9"> 
+                  <table class="table">
+                    <tbody>
+					  <tr>
+                        <td><h3>Email</h3></td>
+                        <td><h3><%= @user.email %></h3></td>
+                      </tr>
+                      
+                      <tr>
+                        <td><h3>Username:</h3></td>
+                        <td><h3><%= @user.username  %></h3></td>
+                      </tr>
+                      
+                      <tr>
+                        <td><h3>Registered date:</h3></td>
+                        <td><h3><%= @user.created_at %></h3></td>
+                      </tr>
+                     
+                    </tbody>
+
+                  </table>
+                  
+                  <button type="button" class="btn btn-primary" id="profile_change_password" data-toggle="modal" data-target="#Modal-Change-Password"><h4>Change Password</h4></button>
+                  <button type="button" class="btn btn-warning pull-right" id="profile_delete_user" data-toggle="modal" data-target="#Modal-Delete-User"><h4>Delete User</h4></button>
+              </div>
+  			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal custom-modal-fade" id="Modal-Change-Password" role="dialog" aria-hitten="true">
+    <div class="modal-dialog modal-lg">
+<form action="/users/changePassword" method="post">    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Change Password</h3>
+        </div>
+        <div class="modal-body form-horizontal">
+          <div class="control-group">
+            <label for="current_password" class="control-label" ><h4>Current Password</h4></label>
+            <div class="controls">
+                <input type="password" name="current_password" id="change_password_current_password">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="new_password" class="control-label"><h4>New Password</h4></label>
+            <div class="controls">
+                <input type="password" name="new_password" id="change_password_new_password">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="confirm_password" class="control-label"><h4>Confirm Password</h4></label>
+            <div class="controls">
+                <input type="password" name="confirm_password" id="change_password_password_confirm">
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-warning" id="change_password_submit_button">Save Changes</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+
+
+<div class="modal" id="Modal-Delete-User" role="dialog">
+<form action="/users/deleteUser" method="get"> 
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Delete User</h3>
+        </div>
+        
+        <div class="modal-body form-horizontal">
+        	<h3>Are you REALLY sure? </h3><br>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-warning" name="id" value="<%= @user.id %>" id="delete_user_submit_button">Yes, delete my account</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+        </div>
+      </div>
+      
+    </div>
+</form>
+  </div>
+
+
+<div class="modal" id="Modal-Change-Photo" role="dialog">
+    <div class="modal-dialog modal-lg">
+<%= form_tag({controller: "users", action: "changePhoto"}, method: "post", multipart: true) do %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Change Photo</h3>
+        </div>
+        
+        <div class="modal-body form-horizontal">
+        	<%= file_field_tag 'photo' , accept: 'image/jpeg'%>
+        </div>
+        
+        <div class="modal-footer">
+          <%= submit_tag("Change", id: "change_photo_submit_button") %>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+<% end %>
+    </div>
+  </div>
+
+
+<%= render 'shared/footer' %>
+

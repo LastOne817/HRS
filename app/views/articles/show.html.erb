@@ -1,0 +1,331 @@
+<%= render '/shared/header' %>
+
+<div class="container marketing">
+
+    <div class="row">
+        <% if Hobby.find_by(id: @article.hobby_first)!=nil %>
+        <div class="col-lg-3">
+            <img class="img-circle" src="<%= Hobby.find(@article.hobby_first).image %>" alt="Generic placeholder image" width="140" height="140">
+            <h2> <%= Hobby.find(@article.hobby_first).name %> </h2>
+            <h3> Recommend Point : <%= (@article.similarity_first * 100).to_i %>% </h3>
+            <p>
+            <% if Hobby.find(@article.hobby_first).content.length > 20 %>
+                <%= simple_format(Hobby.find(@article.hobby_first).content.byteslice(0,20)) %>...(continue)
+        <% else %>
+                <%= simple_format(Hobby.find(@article.hobby_first).content) %>
+        <% end %>
+            </p>
+            <% if session[:user_id] != nil %>
+            <p> 
+            <button class="btn btn-primary" id="oneLike" role="button">like</button>
+
+            <button class="btn btn-warning" id="oneDislike" role="button">dislike</button>
+            </p>
+            <% end %>
+            <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_first%>" role="button">Go to wiki &raquo;</a></p>
+        </div>
+        <% else %> 
+        <div class="col-lg-3">
+            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2> Deleted Hobby </h2>
+            <h3> this is deleted from database </h3>
+            <p>
+        </div>
+
+
+        <% end %>
+       
+
+         <% if Hobby.find_by(id: @article.hobby_second)!=nil %>
+        <div class="col-lg-3">
+            <img class="img-circle" src="<%= Hobby.find(@article.hobby_second).image %>" alt="Generic placeholder image" width="140" height="140">
+            <h2> <%= Hobby.find(@article.hobby_second).name %> </h2>
+            <h3> Recommend Point : <%= (@article.similarity_second * 100).to_i %>% </h3>
+            <p>
+            <% if Hobby.find(@article.hobby_second).content.length > 20 %>
+                <%= simple_format(Hobby.find(@article.hobby_second).content.byteslice(0,20)) %>...(continue)
+        <% else %>
+                <%= simple_format(Hobby.find(@article.hobby_second).content) %>
+        <% end %>
+            </p>
+            <% if session[:user_id] != nil %>
+            <p>
+            <button class="btn btn-primary" id="twoLike" role="button">like</button>
+
+            <button class="btn btn-warning" id="twoDislike" role="button">dislike</button>
+            </p>
+            <% end %>
+            <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_second%>" role="button">Go to wiki &raquo;</a></p>
+        </div>
+        <% else %>
+
+        <div class="col-lg-3">
+            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2> Deleted Hobby </h2>
+            <h3> this is deleted from database </h3>
+            <p>
+        </div>
+
+
+        <% end %>
+
+
+        <% if Hobby.find_by(id: @article.hobby_third)!=nil %>
+        <div class="col-lg-3">
+            <img class="img-circle" src="<%= Hobby.find(@article.hobby_third).image %>" alt="Generic placeholder image" width="140" height="140">
+            <h2> <%= Hobby.find(@article.hobby_third).name %> </h2>
+            <h3> Recommend Point : <%= (@article.similarity_third * 100).to_i %>% </h3>
+            <p>
+            <% if Hobby.find(@article.hobby_third).content.length > 20 %>
+                <%= simple_format(Hobby.find(@article.hobby_third).content.byteslice(0,20)) %>...(continue)
+        <% else %>
+                <%= simple_format(Hobby.find(@article.hobby_third).content) %>
+        <% end %>
+            </p>
+            <p>
+            <% if session[:user_id] != nil %>
+            <button class="btn btn-primary" id="threeLike" role="button">like</button>
+
+            <button class="btn btn-warning" id="threeDislike" role="button">dislike</button>
+            </p>
+            <% end %>
+            <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_third%>" role="button">Go to wiki &raquo;</a></p>
+        </div>
+         <% else %>
+
+        <div class="col-lg-3">
+            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2> Deleted Hobby </h2>
+            <h3> this is deleted from database </h3>
+            <p>
+        </div>
+
+
+        <% end %>
+
+        <% if Hobby.find_by(id: @article.hobby_fourth)!=nil %>
+        <div class="col-lg-3">
+            <img class="img-circle" src="<%= Hobby.find(@article.hobby_fourth).image %>" alt="Generic placeholder image" width="140" height="140">
+            <h2> <%= Hobby.find(@article.hobby_fourth).name %> </h2>
+            <h3> Recommend Point : <%= (@article.similarity_fourth * 100).to_i %>% </h3>
+            <p>
+            <% if Hobby.find(@article.hobby_fourth).content.length > 20 %>
+                <%= simple_format(Hobby.find(@article.hobby_fourth).content.byteslice(0,20)) %>...(continue)
+        <% else %>
+                <%= simple_format(Hobby.find(@article.hobby_fourth).content) %>
+        <% end %>
+            </p>
+            <% if session[:user_id] != nil %>
+            <p>
+            <button class="btn btn-primary" id="fourLike" role="button">like</button>
+
+            <button class="btn btn-warning" id="fourDislike" role="button">dislike</button>
+            </p>
+            <% end %>
+            <p><a class="btn btn-default" href="/hobbies/<%=@article.hobby_fourth%>" role="button">Go to wiki &raquo;</a></p>
+        </div>
+        <% else %>
+
+        <div class="col-lg-3">
+            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2> Deleted Hobby </h2>
+            <h3> this is deleted from database </h3>
+            <p>
+        </div>
+
+
+        <% end %>
+
+          
+    </div><!-- /.row -->
+</div> 
+<h3> 
+    <div class="row aligning">
+        <br>
+        <div id="Message"></div>
+        <br><br><br>
+    </div>
+</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1><small class="pull-right"> <%= @comments.length %> comments</small> Comments </h1>
+            </div> 
+            <div class="comments-list">
+                <% @comments.each do |comment| %>
+                    <div class="media">
+
+                    <% if session[:user_id]!=nil &&  User.find(session[:user_id]).id == comment.user_id %>
+                        <div class="pull-right">
+                        <form action="/comments/delete" method="post"> 
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal<%= comment.id %>" >
+                                <i class="fa fa-times"></i> Delete</button>
+
+                            <div id="modal<%= comment.id %>" class="modal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Delete Comment</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>You really want to delete comment?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger" name="comment_id" value=<%= comment.id %>>Delete Comment</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                <% end %>
+
+                    <p class="pull-right"><small> <%= comment.created_at %> </small></p>
+
+                    <div class="media-left">
+                        <img class="img-circle profile-img" src=<%= User.find(comment.user_id).image %>>
+                    </div>
+                    <div class="media-body">
+
+                        <h4 class="media-heading user_name"> <%= User.find(comment.user_id).username %></h4>
+                        <%= simple_format(comment.text, :sanitize => true) %>
+
+                    </div>
+                </div> 
+            <% end %>
+
+                <% if session[:user_id].nil? %>
+
+                    <div class="media">
+                    <div class="meda-body">
+                        <p class="login-msg">Log in if you want to comment.</p>
+                    </div>
+                </div>
+            <% else %>
+
+                    <form action="/comments/create" method="post">
+                    <div class="media">
+                        <div class="row">
+                            <div class="col-md-10">
+
+                                <div class="media-left">
+                                    <img class="img-circle profile-img" src=<%= User.find(session[:user_id]).image %> >
+                                </div>
+                                <div class="media-body">
+                                    <textarea name="text"  rows="4" cols="90"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-comment"><h3>Comment</h3></button>
+                            </div>
+                        </div>
+                        <%= hidden_field_tag "article_id", @article.id %>
+                    </form>
+
+                <% end %>
+                </div>
+            </div>
+        </div>
+
+        <%= render 'shared/footer' %>
+
+        <style>
+
+
+/* recommended */
+.marketing {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.marketing .col-lg-3 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.marketing h2 {
+    font-weight: normal;
+}
+.marketing .col-lg-3 p {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+/* comment */
+
+.user_name{
+    font-size:14px;
+    font-weight: bold;
+}
+.comments-list .media{
+    border-bottom: 1px dotted #ccc;
+}
+
+.profile-img{
+    width: 80px;
+    height: auto;
+}
+
+.btn-comment{
+    margin-top: 10px;
+}
+
+.login-msg{
+    text-align: center;
+}
+
+.aligning{
+    text-align: center;
+}
+        </style>
+
+        <script>
+<% if Hobby.find_by(id: @article.hobby_first)!=nil %>
+$("#oneLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_first).id %>); });
+$("#oneDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_first).id %>); });
+<% end %>
+
+<% if Hobby.find_by(id: @article.hobby_second)!=nil %>
+$("#twoLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_second).id %>); });
+$("#twoDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_second).id %>); });
+<% end %>
+
+<% if Hobby.find_by(id: @article.hobby_third)!=nil %>
+$("#threeLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_third).id %>); });
+$("#threeDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_third).id %>); });
+<% end %>
+
+<% if Hobby.find_by(id: @article.hobby_fourth)!=nil %>
+$("#fourLike").click(function(){ registerAjax(1,<%= Hobby.find(@article.hobby_fourth).id %>); });
+$("#fourDislike").click(function(){ registerAjax(0,<%= Hobby.find(@article.hobby_fourth).id %>); });
+<% end %>
+
+function registerAjax(v,i){
+    $.ajax({
+type:"POST",
+url:"/pages/setlike",
+dataType:"JSON",
+data: {
+"value": v,
+"hobby_id": i
+},
+success: function(result){
+if(result["error_code"]==0 && v == 0)
+$('#Message').text("hobby disliked successfully");
+else if(result["error_code"]==0 && v == 1)
+$('#Message').text("hobby liked successfully");
+else
+$('#Message').text("hobby already liked or disliked");
+
+},
+error: function(data){
+}		
+});
+}
+
+        </script>

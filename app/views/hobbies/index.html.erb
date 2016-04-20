@@ -1,0 +1,54 @@
+<%= render 'shared/header' %>
+
+
+<div class="row">
+    <div class="col-md-10">
+        <h1 class="page-header">Hobby List 
+            <small>Last 20</small> </h1>
+    </div>
+    <% if session[:user_id] != nil %>
+        <div class="col-md-2 create-btn">
+            <%= button_to 'New article', new_hobby_path, class: 'btn btn-warning', id: 'hobby_create_trigger', method: :get %>
+        </div>
+    <% end %>
+</div>
+
+<% @hobbies.each do |hobby| %>
+
+    <div class="row">
+    <div class="col-md-2"> </div>
+    <div class="col-md-4">
+        <a href="/hobbies/<%=hobby.id%>">
+            <img class="img-responsive" src="<%= hobby.image %>" alt="" style="height:150px">
+        </a>
+    </div>
+    <div class="col-md-6">
+        <h3><%= hobby.name %></h3>
+        <p>
+        <% if hobby.content.length > 20 %>
+            <%= simple_format(hobby.content.byteslice(0,20)) %>...(continue)
+    <% else %>
+            <%= simple_format(hobby.content) %> 
+    <% end %>
+        </p>
+        <a class="btn btn-primary" href="/hobbies/<%=hobby.id%>">Show <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <% if session[:user_id] != nil %>
+            <a class="btn btn-primary" href="/hobbies/<%=hobby.id%>/edit">Edit <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <% end %>
+    </div>
+</div>
+<hr>
+      <% end %>
+</div>
+
+
+<%= render 'shared/footer' %>
+
+
+<style>
+
+.create-btn{
+    padding-top: 40px;
+}
+
+</style>

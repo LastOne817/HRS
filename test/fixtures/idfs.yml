@@ -1,0 +1,105 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+idfone:
+    id: 1
+    prop: "rich"
+    value: 1.5
+
+idftwo:
+    id: 2
+    prop: "poor"
+    value: 1.5
+
+idfthree:
+    id: 3
+    prop: "active"
+    value: 1.5
+
+idffour:
+    id: 4
+    prop: "inactive"
+    value: 1.5
+
+idffive:
+    id: 5
+    prop: "ps"
+    value: 1.5
+
+idfsix:
+    id: 6
+    prop: "solo"
+    value: 1.5
+
+idfseven:
+    id: 7
+    prop: "team"
+    value: 1.5
+
+idfeight:
+    id: 8
+    prop: "online"
+    value: 1.5
+
+idfnine:
+    id: 9
+    prop: "offline"
+    value: 1.5
+
+idften:
+    id: 10
+    prop: "handuse"
+    value: 1.5
+
+idfeleven:
+    id: 11
+    prop: "art"
+    value: 1.5
+
+idftwelve:
+    id: 12
+    prop: "mechanic"
+    value: 1.5
+
+idfthirteen:
+    id: 13
+    prop: "collecting"
+    value: 1.5
+
+idffourteen:
+    id: 14
+    prop: "gamble"
+    value: 1.5
+
+idffifteen:
+    id: 15
+    prop: "writing"
+    value: 1.5
+
+idfsixteen:
+    id: 16
+    prop: "competitive"
+    value: 1.5
+
+idfseventeen:
+    id: 17
+    prop: "non_competitive"
+    value: 1.5
+
+idfeightteen:
+    id: 18
+    prop: "observe"
+    value: 1.5
+
+idfnineteen:
+    id: 19
+    prop: "persistence"
+    value: 1.5
+
+idftwenty:
+    id: 20
+    prop: "nonexsistence"
+    value: 1.5

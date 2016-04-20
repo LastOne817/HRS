@@ -1,0 +1,66 @@
+<%= render 'shared/header' %>
+
+<%= form_for @hobby do |f| %>
+        <% if @hobby.errors.any? %>
+                <div id="error_explanation">
+                        <h2>
+                                <%= pluralize(@hobby.errors.count,"error") %> prohibited
+                        this article from being saved:
+                        </h2>
+
+                        <ul>
+                                <% @hobby.errors.full_messages.each do |msg| %>
+                                        <li><%= msg %></li>
+                                <% end %>
+                        </ul>
+                </div>
+        <% end %>
+
+        <div class="container">
+
+        <div class="row">
+
+                <!-- Title -->
+                <h1><%=f.text_field :name %></h1>
+
+                <hr>
+
+                <!-- Preview Image -->
+                <img class="img-responsive" src="<%= @hobby.image %>" alt="">
+
+                <hr>
+
+                <%= f.file_field :photo %>
+
+                <!-- Post Content -->
+                <p> <%= f.text_area :content, :size => "120x20" %> </p>
+
+                <hr>
+
+        </div>
+
+        <br>
+
+        <div class="row padding-cls">
+            <div class="col-md-10">
+                <%= f.submit :class => 'btn btn-primary' %>
+            </div>
+
+            <div class="col-md-2">
+                <%= button_to 'Back', hobbies_path, class: 'btn btn-primary' %>
+            </div>
+       </div>
+
+<% end %>
+
+<%= render 'shared/footer' %>
+
+<style>
+
+.padding-cls{
+    padding-bottom: 20px;
+
+}
+
+</style>
+
